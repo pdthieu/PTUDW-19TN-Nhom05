@@ -35,13 +35,13 @@
 }
 
 .active{
-  color:#83C329;
+  color:#83C329 !important;
 }
 a:hover{
   color:#83C329 !important;
 }
 a:focus{
-  color: black !important;
+  color: #83C329 !important;
 }
 
 html, body, .full-h{
@@ -67,7 +67,7 @@ h1, h2, h3{
   font-family: 'Montserrat', sans-serif;
 }
 
-a, a:hover, a:focus, a:active {
+a, a:hover, a:focus {
   text-decoration: none;
   color: inherit;
 }
