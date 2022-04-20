@@ -1,0 +1,43 @@
+:root {
+  --my-blue: #2fa0d5;
+  --my-pink: #fa97c2;
+  --my-green: #73c926;
+}
+
+body {
+  min-width: 800px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+#signin {
+  display: block;
+}
+
+#signin .left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--my-blue);
+}
+
+#signin .right {
+  background: url("/assets/auth/logo_auth.png") left bottom no-repeat,
+    url("/assets/auth/logo_auth.png") right top no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--my-pink);
+  height: 100vh;
+}
+
+#signin .left .center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  height: 80%;
+  width: 50%;
+  border-radius: 0px 0px 20px 20px;
+}
