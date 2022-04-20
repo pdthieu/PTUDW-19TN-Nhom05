@@ -1,0 +1,11 @@
+.card-text{
+    color: #CED4DA;
+    font-size: 90%;
+}
+* {
+    font-family: Roboto;
+   }
+   
+   .shadow{
+    box-shadow: 2px 2px;
+}

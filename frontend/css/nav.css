@@ -13,10 +13,11 @@
   color:#83C329;
   margin: 0 !important;
 }
-
 .nav-link{
   font-family: 'Roboto', sans-serif;
   color: #CED4DA;
+}
+.nav-bar-custom .nav-link{
   padding: 0px;
   margin-top: 20px;
 }
@@ -55,4 +56,13 @@ hr {
 
 .nav-bar-custom{
   width: 13.666% !important;
+  
+}
+.fixed{
+  z-index: 9999;
+  position: fixed;
+}
+
+h1, h2, h3{
+  font-family: 'Montserrat', sans-serif;
 }
