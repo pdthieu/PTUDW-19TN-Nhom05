@@ -52,3 +52,7 @@ html, body, .full-h{
 hr {
   width: 90%; color: #83c329; height: 2px !important;
 }
+
+.nav-bar-custom{
+  width: 13.666% !important;
+}
