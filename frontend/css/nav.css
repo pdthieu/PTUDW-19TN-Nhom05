@@ -66,3 +66,8 @@ hr {
 h1, h2, h3{
   font-family: 'Montserrat', sans-serif;
 }
+
+a, a:hover, a:focus, a:active {
+  text-decoration: none;
+  color: inherit;
+}
