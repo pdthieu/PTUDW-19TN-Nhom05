@@ -1,3 +1,6 @@
+body{
+    font-size: 0.9rem;
+}
 #logo-image {
     width: 70px;
     padding: 10px;
@@ -13,16 +16,15 @@
     color:#83C329;
     margin: 0 !important;
   }
-  
+
   .nav-link{
     font-family: 'Roboto', sans-serif;
     color: #CED4DA;
     padding: 0px;
-    margin-top: 20px;
   }
   .nav-item{
     border-radius: 30%;
-    margin-bottom: 15px;
+    margin: 10px 5px;
     align-items: center;
     display: flex;
   }
@@ -52,3 +54,4 @@
   hr {
     width: 90%; color: #83c329; height: 2px !important;
   }
+
