@@ -22,9 +22,9 @@
   border-radius: 0px 0px 20px 20px;
 }
 
-#form__signin {
-  background: url("/assets/auth/logo_auth.png") left bottom no-repeat,
-    url("/assets/auth/logo_auth.png") right top no-repeat;
+#form__signup {
+  background: url("./assets/auth/logo_auth.png") left bottom no-repeat,
+    url("./assets/auth/logo_auth.png") right top no-repeat;
   padding-left: 16px;
   padding-right: 16px;
 }
