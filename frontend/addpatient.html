@@ -12,12 +12,13 @@
   <script src="https://kit.fontawesome.com/1d64da5d4e.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="css/nav.css">
   <link rel="stylesheet" href="css/manager.css" />
+  <link rel="stylesheet" href="css/addpatient.css">
   <title>Covid Management</title>
 </head>
 
 <body>
   <div class="d-flex flex-row full-h">
-    <div class="d-flex flex-column col-2 p-5 bg-light full-h">
+    <div class="d-flex flex-column col-2 p-4 bg-light full-h">
       <div id="logo">
         <img id="logo-image" src="assets/logo.png" />
         <h2 id="logo-title">CO.VI</h2>
@@ -36,7 +37,7 @@
             <i class="fa-solid fa-credit-card fa-xl"></i> Quản lý gói nhu yếu phẩm</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="#">
+          <a class="nav-link" aria-current="page" href="payment_manager.html">
             <i class="fa-solid fa-credit-card fa-xl"></i> Quản lý thanh toán</a>
         </li>
         <li class="nav-item">
@@ -69,53 +70,61 @@
       </div>
     </div>
     <div class="col p-5" bis_skin_checked="1">
-      <h3>Quản lý bệnh nhân > Thêm người liên quan Covid-19</h3>
+      <h3>Quản lý bệnh nhân > Thêm người liên quan đến Covid-19</h3>
+      <div class="p-5">
       <form>
+        <h5>Thông tin bệnh nhân:</h5>
         <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="inputEmail4">Email</label>
-            <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+          <div class="form-group col-md-6 py-2 inline-input name">
+            <input type="text" class="form-control" id="inputname" placeholder="Nhập họ và tên">
           </div>
-          <div class="form-group col-md-6">
-            <label for="inputPassword4">Password</label>
-            <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
+          <div class="form-group py-2 col-md-5 inline-input">
+            <input type="text" class="form-control" id="inputIdUser" placeholder="CMND/CCCD">
           </div>
         </div>
-        <div class="form-group">
-          <label for="inputAddress">Address</label>
-          <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+        <div class="form-row ">
+          <div class="form-group col-md-6 py-2 inline-input tel">
+            <input type="tel" class="form-control" id="inputTel" placeholder="Số điện thoại">
+          </div>
+          <div class="form-group col-md-5 py-2 inline-input">
+            <input type="date" class="form-control" id="inputDayofBirth" placeholder="">
+          </div>
         </div>
-        <div class="form-group">
-          <label for="inputAddress2">Address 2</label>
-          <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+        <div class="form-group py-2 ">
+            <input type="text" class="form-control" id="inputAddress" placeholder="Địa chỉ">
+        </div>
+        <div class="form-group py-2">
+          <label for="inputStatus">Tình trạng: </label>
+          <select id="inputStatus" name="inputStatus">
+            <option value="None">Chưa mắc Covid</option>
+            <option value="F0">F0</option>
+            <option value="F1">F1</option>
+            <option value="F2">F2</option>
+            <option value="F3">F3</option>
+            <option value="Recovered">Đã hồi phục</option>
+          </select>
         </div>
         <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="inputCity">City</label>
-            <input type="text" class="form-control" id="inputCity">
-          </div>
-          <div class="form-group col-md-4">
-            <label for="inputState">State</label>
-            <select id="inputState" class="form-control">
-              <option selected>Choose...</option>
-              <option>...</option>
-            </select>
-          </div>
-          <div class="form-group col-md-2">
-            <label for="inputZip">Zip</label>
-            <input type="text" class="form-control" id="inputZip">
+          <div class="form-group  py-2">
+            <label for="inputHistory">Lịch sử truy vết: </label>
+            <textarea class="form-control" id="inputHistory" rows="3"></textarea>
           </div>
         </div>
         <div class="form-group">
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="gridCheck">
-            <label class="form-check-label" for="gridCheck">
-              Check me out
+            <input class="form-check-input" type="checkbox" id="check">
+            <label class="form-check-label" for="check">
+              Xác nhận thông tin đã điền.
             </label>
           </div>
         </div>
-        <button type="submit" class="btn btn-primary">Sign in</button>
+        <div class="d-flex form-row justify-content-center">
+          <button type="submit" class="btn btn-outline-success confirm">Xác nhận</button>
+          <button type="reset" class="btn btn-outline-success cancel">Hủy</button>
+        </div>
+        
       </form>
+    </div>
     </div>
   </div>
 </html>

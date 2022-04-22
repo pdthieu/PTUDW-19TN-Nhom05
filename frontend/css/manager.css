@@ -1,6 +1,4 @@
-body{
-    font-size: 0.9rem;
-}
+
 #logo-image {
     width: 70px;
     padding: 10px;
@@ -24,7 +22,7 @@ body{
   }
   .nav-item{
     border-radius: 30%;
-    margin: 10px 5px;
+    margin: 15px 5px;
     align-items: center;
     display: flex;
   }
@@ -55,3 +53,10 @@ body{
     width: 90%; color: #83c329; height: 2px !important;
   }
 
+  .paging a{
+    font-weight: bold;
+    color:black ;
+}
+.paging{
+  padding: 10px;
+}
