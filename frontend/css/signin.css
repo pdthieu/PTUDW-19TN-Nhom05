@@ -23,8 +23,8 @@
 }
 
 #form__signin {
-  background: url("/assets/auth/logo_auth.png") left bottom no-repeat,
-    url("/assets/auth/logo_auth.png") right top no-repeat;
+  background: url("../assets/auth/logo_auth.png") left bottom no-repeat,
+    url("../assets/auth/logo_auth.png") right top no-repeat;
   padding-left: 16px;
   padding-right: 16px;
 }
