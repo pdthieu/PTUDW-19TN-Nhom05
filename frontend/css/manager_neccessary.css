@@ -1,0 +1,20 @@
+.card-text {
+  color: #5b6f84;
+  font-size: 90%;
+}
+* {
+  font-family: Roboto;
+}
+
+.shadow {
+  box-shadow: 2px 2px;
+}
+
+.search-button {
+  width: 140px !important;
+  margin-right: 20px;
+}
+
+.form-select-filter {
+  margin-right: 20px;
+}
