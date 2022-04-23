@@ -3,24 +3,29 @@
   padding: 10px;
   vertical-align: middle;
 }
+
 #logo {
   margin-bottom: 20px;
   align-items: center;
   display: flex;
 }
+
 #logo-title {
   font-family: "Montserrat", sans-serif;
   color: #83c329;
   margin: 0 !important;
 }
+
 .nav-link {
   font-family: "Roboto", sans-serif;
   color: #ced4da;
 }
+
 .nav-bar-custom .nav-link {
   padding: 0px;
   margin-top: 20px;
 }
+
 .nav-item {
   border-radius: 30%;
   margin-bottom: 15px;
@@ -37,9 +42,11 @@
 .active {
   color: #83c329 !important;
 }
+
 a:hover {
   color: #83c329 !important;
 }
+
 a:focus {
   color: #83c329 !important;
 }
@@ -64,6 +71,7 @@ hr {
   padding-top: 1%;
   padding-bottom: 2%;
 }
+
 .fixed {
   z-index: 9999;
   position: fixed;

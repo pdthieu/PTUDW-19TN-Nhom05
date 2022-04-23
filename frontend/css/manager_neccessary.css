@@ -2,6 +2,7 @@
   color: #5b6f84;
   font-size: 90%;
 }
+
 * {
   font-family: Roboto;
 }
@@ -12,9 +13,42 @@
 
 .search-button {
   width: 140px !important;
-  margin-right: 20px;
+  margin-right: 10px;
 }
 
 .form-select-filter {
   margin-right: 20px;
+}
+
+table,
+th,
+td {
+  border: 1px solid #868585;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td div {
+  justify-content: center;
+}
+
+th,
+td {
+  text-align: center;
+  padding: 10px;
+}
+
+table tbody tr:nth-child(odd) {
+  background-color: #eee;
+}
+
+table tbody tr:nth-child(even) {
+  background-color: white;
+}
+
+table thead {
+  background-color: skyblue;
 }
