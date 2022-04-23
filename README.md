@@ -28,6 +28,6 @@
 # Flow:
 
 1. Login/SignUp: index.html
-2. Phân hệ Manager: Login vào với user: Manager => Sẽ dẫn đến phân luồng Quản lý
-3. Phân hệ Người dùng: Login vào với user: User => Sẽ dẫn đến phân luồng Người dùng
-4. Phân hệ Admin: Login vào user: Admin => Sẽ dẫn đến phần lường Admin
+2. Phân hệ Manager: Login vào với email: manager@gmail.com => Sẽ dẫn đến phân luồng Quản lý
+3. Phân hệ Người dùng: Login vào với email: user@gmail.com => Sẽ dẫn đến phân luồng Người dùng
+4. Phân hệ Admin: Login vào email: admin@gmail.com => Sẽ dẫn đến phần luồng Admin
