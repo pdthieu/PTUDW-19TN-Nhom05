@@ -10,7 +10,10 @@ function validateForm() {
   } else if (x === "user@gmail.com") {
     form.setAttribute("action", "./products.html");
     return true;
-  } else {
+  } else if (x == "admin@gmail.com") {
+    form.setAttribute("action", "./admin-manager.html");
+    return true;
+} else {
     return false;
   }
 }
