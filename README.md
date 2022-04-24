@@ -21,9 +21,13 @@
 # Giữa kỳ:
 
 1. Vũ Văn Đô(19120007): 20%
+    - Các màn hình của người dùng admin.
 2. Bùi Đình Nguyên Khoa(19120018): 26,67%
+    - Các màn hình của người dùng user.
 3. Nguyễn Tam Dũng(19120200): 26,67%
+    - Màn hình Quản lí bệnh nhân, Quản lí thanh toán, thêm bệnh nhân, chi tiết thông tin bệnh nhân.
 4. Phan Duy Trung Hiếu(19120510): 26,67%
+    - Màn hình sign in, sign up, Quản lí nhu yếu phẩm, Quản lí gói nhu yếu phẩm.
 
 # Flow:
 
