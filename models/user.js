@@ -29,7 +29,7 @@ module.exports = (sequelize, Datatype) => {
             currentStatus: {
                 type: Datatype.STRING,
             },
-            username: {
+            email: {
                 type: Datatype.STRING,
                 allowNull: false,
                 unique: true,
