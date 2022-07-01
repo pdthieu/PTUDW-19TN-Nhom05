@@ -1,0 +1,26 @@
+.cancel:hover{
+    background-color: #F63F3F !important;
+    border-color:#F63F3F !important;
+}
+.confirm:hover{
+    background-color: #4D96FF !important;
+    border-color: #4D96FF !important;
+    
+}
+.cancel{
+    color:#F63F3F;
+    border-color: #F63F3F;
+    font-weight: bold;
+}
+.confirm{
+    color:#4D96FF;
+    border-color:#4D96FF ;
+    font-weight: bold;
+    margin-right: 10px;
+}
+.inline-input{
+    display: inline-block;
+}
+.name, .tel{
+    padding-right:20px;
+}

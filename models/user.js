@@ -17,7 +17,7 @@ module.exports = (sequelize, Datatype) => {
                 type: Datatype.STRING,
             },
             birthday: {
-                type: Datatype.timestamps,
+                type: Datatype.TIME,
             },
             addressId: {
                 type: Datatype.UUID,

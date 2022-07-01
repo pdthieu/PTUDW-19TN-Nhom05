@@ -12,7 +12,7 @@ module.exports = (sequelize, Datatype) => {
                 type: Datatype.STRING,
             },
             dueDate: {
-                type: Datatype.timestamps,
+                type: Datatype.TIME,
             },
             maximumQuantity: {
                 type: Datatype.INTEGER,

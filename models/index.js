@@ -31,23 +31,23 @@ const db = {};
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
-db.Admin = require('./admin');
-db.Credit = require('./credit');
-db.OrderPackage = require('./order-package');
-db.OrderProductPackage = require('./order-product-package');
-db.Order = require('./order');
-db.Package = require('./package');
-db.ProductPackage = require('./product-package');
-db.Product = require('./product');
-db.Relation = require('./relation');
-db.TransactionHistory = require('./transaction-history');
-db.User = require('./user');
+db.Admin = require('./admin')(sequelize, Sequelize);
+db.Credit = require('./credit')(sequelize, Sequelize);
+db.OrderPackage = require('./order-package')(sequelize, Sequelize);
+db.OrderProductPackage = require('./order-product-package')(sequelize, Sequelize);
+db.Order = require('./order')(sequelize, Sequelize);
+db.Package = require('./package')(sequelize, Sequelize);
+db.ProductPackage = require('./product-package')(sequelize, Sequelize);
+db.Product = require('./product')(sequelize, Sequelize);
+db.Relation = require('./relation')(sequelize, Sequelize);
+db.TransactionHistory = require('./transaction-history')(sequelize, Sequelize);
+db.User = require('./user')(sequelize, Sequelize);
 
 db.User.hasMany(db.Relation, {
     foreignKey: 'userId',
     as: 'relations',
 });
-db.Relation.belongsTo({
+db.Relation.belongsTo(db.User, {
     foreignKey: 'relatedId',
     as: 'relatedUser',
 });
@@ -68,15 +68,6 @@ db.Credit.hasMany(db.TransactionHistory, {
 db.TransactionHistory.belongsTo(db.Credit, {
     foreignKey: 'creditId',
     as: 'credit',
-});
-
-db.TransactionHistory.hasMany(db.Order, {
-    foreignKey: 'transactionId',
-    as: 'orders',
-});
-db.Order.belongsTo(db.TransactionHistory, {
-    foreignKey: 'transactionId',
-    as: 'transaction',
 });
 
 db.TransactionHistory.hasMany(db.Order, {
@@ -141,4 +132,5 @@ db.ProductPackage.belongsTo(db.Package, {
     foreignKey: 'packageId',
     as: 'package',
 });
-db.module.exports = db;
+
+module.exports = db;

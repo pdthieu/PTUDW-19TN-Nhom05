@@ -1,0 +1,45 @@
+#banner{
+    background-image: url("https://i.pinimg.com/736x/17/08/9f/17089f4c221d8a8d19371546cf706fa0--twitter-cover-cover-pics.jpg");
+    background-size:cover;
+    background-position: bottom;
+}
+  
+#banner{
+    height: 210px;
+}
+
+#profile-image{
+    height: 150px;
+    float: left;    
+    margin-top: 140px;
+    margin-left: 100px;
+    border-radius: 50%;
+}
+
+#bottom{
+    height: 120px;
+}
+
+label, input{
+    font-family: 'Roboto', sans-serif;
+    font-size: 90%;
+}
+
+.shadow{
+    box-shadow: 2px 2px;
+}
+
+.row{
+    margin-right: 0px;
+}
+
+.alert {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.custom-card{
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+    padding: 16px;
+}
