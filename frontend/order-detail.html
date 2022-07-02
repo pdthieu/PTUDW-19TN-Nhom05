@@ -1,374 +1,400 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Changa+One&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&family=Roboto&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-      crossorigin="anonymous"
-    />
-    <script src="https://kit.fontawesome.com/1d64da5d4e.js" crossorigin="anonymous"></script>
-    <link rel="icon" type="image/x-icon" href="./assets/logo.png" />
-    <link rel="stylesheet" href="css/nav.css" />
-    <link rel="stylesheet" href="css/profile.css" />
-    <title>Order Detail</title>
-  </head>
-  <body>
-    <div class="d-flex flex-row full-h">
-      <div class="d-flex flex-column col-2 p-5 bg-light full-h nav-bar-custom fixed">
-        <div id="logo">
-          <img id="logo-image" src="assets/logo.png" />
-          <h2 id="logo-title">CO.VI</h2>
-        </div>
-        <ul class="nav flex-column">
-          <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="products.html">
-              <i class="fa-solid fa-cart-shopping fa-xl mx-2"></i>Nhu yếu phẩm</a
-            >
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="cart.html">
-              <i class="fa-solid fa-basket-shopping fa-xl mx-2"></i>Giỏ hàng</a
-            >
-          </li>
-          <li class="nav-item">
-           <a class="nav-link" aria-current="page" href="order.html">
-              <i class="fa-solid fa-credit-card fa-xl mx-2"></i>Đơn hàng</a
-            >
-          </li>
-        </ul>
-        <div class="d-flex flex-column align-items-center" style="margin-top: auto">
-          <hr />
-          <a href="profile.html" class="d-flex flex-row align-items-center">
-            <div>
-              <img
-                src="https://scontent.fsgn5-6.fna.fbcdn.net/v/t39.30808-6/268606412_1968226710014149_7475145565654176129_n.jpg?_nc_cat=108&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=FYU1wF1FvIsAX_nxST5&_nc_ht=scontent.fsgn5-6.fna&oh=00_AT_33jg6-iJZXYnR4ASLCwN9Bld8XRpJ7cqfnj8FzbOr3Q&oe=6264BFC7"
-                alt=""
-                width="32"
-                height="32"
-                class="rounded-circle me-2"
-              />
-            </div>
-            <div class="d-flex flex-column justify-content-center">
-              <strong style="margin: 0px">Văn Đô</strong>
-              <p style="margin: 0px; font-size: 80%; color: #ced4da">@vandovu</p>
-            </div>
-          </a>
-        </div>
-        <div class="d-flex justify-content-center">
-          <a href="index.html">Đăng xuất</a>
-        </div>
-      </div>
-      <div class="col-2 nav-bar-custom"></div>
-      <div class="col p-5">
-        <h3>Lịch sử đặt hàng</h3>
-        <div class="container pt-3">
-          <div class="container-fluid">
-            <div class="row">
-              <div class="col-md-12">
-                <h4>Đơn hàng #00001</h4>
-                <p>Hóa đơn ngày: 20/01/2022</p>
-                <p>
-                  <a class="btn" href="#"></a>
-                </p>
-                <div class="row mb-4">
-                  <div class="col-md-6">
-                    <h5>Bên gửi</h5>
-                    <div>NV. Trung Hiếu</div>
-                    <div>Cửa hàng Bách Hóa Xanh</div>
-                    <div>SDT: 0123456789</div>
-                  </div>
-                  <div class="col-md-6">
-                    <h5>Bên nhận</h5>
-                    <div>Văn Đô</div>
-                    <div>01 Nguyễn Văn Cừ, Q5, TP.HCM</div>
-                    <div>SDT: 0123456789</div>
-                  </div>
+    <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Changa+One&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&family=Roboto&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+            crossorigin="anonymous"
+        />
+        <script src="https://kit.fontawesome.com/1d64da5d4e.js" crossorigin="anonymous"></script>
+        <link rel="icon" type="image/x-icon" href="./assets/logo.png" />
+        <link rel="stylesheet" href="css/nav.css" />
+        <link rel="stylesheet" href="css/profile.css" />
+        <title>Order Detail</title>
+    </head>
+    <body>
+        <div class="d-flex flex-row full-h">
+            <div class="d-flex flex-column col-2 p-5 bg-light full-h nav-bar-custom fixed">
+                <div id="logo">
+                    <img id="logo-image" src="assets/logo.png" />
+                    <h2 id="logo-title">CO.VI</h2>
                 </div>
-                <table class="table mb-4">
-                  <thead>
-                    <tr>
-                      <th scope="col">#</th>
-                      <th scope="col">Sản phẩm</th>
-                      <th scope="col">Đơn giá</th>
-                      <th scope="col">Số lượng</th>
-                      <th scope="col">Tổng giá</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>
-                        <div class="d-flex align-items-center justify-content-start">
-                          <img
-                            width="40"
-                            height="40"
-                            class="rounded pr-2"
-                            src="https://picsum.photos/300/300"
-                          />
-                          <div class="p-1"></div>
-                          Rau muống
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="products.html">
+                            <i class="fa-solid fa-cart-shopping fa-xl mx-2"></i>Nhu yếu phẩm</a
+                        >
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="cart.html">
+                            <i class="fa-solid fa-basket-shopping fa-xl mx-2"></i>Giỏ hàng</a
+                        >
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="order.html">
+                            <i class="fa-solid fa-credit-card fa-xl mx-2"></i>Đơn hàng</a
+                        >
+                    </li>
+                </ul>
+                <div class="d-flex flex-column align-items-center" style="margin-top: auto">
+                    <hr />
+                    <a href="profile.html" class="d-flex flex-row align-items-center">
+                        <div>
+                            <img
+                                src="https://scontent.fsgn5-6.fna.fbcdn.net/v/t39.30808-6/268606412_1968226710014149_7475145565654176129_n.jpg?_nc_cat=108&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=FYU1wF1FvIsAX_nxST5&_nc_ht=scontent.fsgn5-6.fna&oh=00_AT_33jg6-iJZXYnR4ASLCwN9Bld8XRpJ7cqfnj8FzbOr3Q&oe=6264BFC7"
+                                alt=""
+                                width="32"
+                                height="32"
+                                class="rounded-circle me-2"
+                            />
                         </div>
-                      </td>
-                      <td>12.000 vnđ</td>
-                      <td>2</td>
-                      <td>24.000 vnđ</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>
-                        <div class="d-flex align-items-center justify-content-start">
-                          <img
-                            width="40"
-                            height="40"
-                            class="rounded pr-2"
-                            src="https://picsum.photos/300/300"
-                          />
-                          <div class="p-1"></div>
-                          Rau muống
+                        <div class="d-flex flex-column justify-content-center">
+                            <strong style="margin: 0px">Văn Đô</strong>
+                            <p style="margin: 0px; font-size: 80%; color: #ced4da">@vandovu</p>
                         </div>
-                      </td>
-                      <td>12.000 vnđ</td>
-                      <td>2</td>
-                      <td>24.000 vnđ</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>
-                        <div class="d-flex align-items-center justify-content-start">
-                          <img
-                            width="40"
-                            height="40"
-                            class="rounded pr-2"
-                            src="https://picsum.photos/300/300"
-                          />
-                          <div class="p-1"></div>
-                          Rau muống
-                        </div>
-                      </td>
-                      <td>12.000 vnđ</td>
-                      <td>2</td>
-                      <td>24.000 vnđ</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>
-                        <div class="d-flex align-items-center justify-content-start">
-                          <img
-                            width="40"
-                            height="40"
-                            class="rounded pr-2"
-                            src="https://picsum.photos/300/300"
-                          />
-                          <div class="p-1"></div>
-                          Rau muống
-                        </div>
-                      </td>
-                      <td>12.000 vnđ</td>
-                      <td>2</td>
-                      <td>24.000 vnđ</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>
-                        <div class="d-flex align-items-center justify-content-start">
-                          <img
-                            width="40"
-                            height="40"
-                            class="rounded pr-2"
-                            src="https://picsum.photos/300/300"
-                          />
-                          <div class="p-1"></div>
-                          Rau muống
-                        </div>
-                      </td>
-                      <td>12.000 vnđ</td>
-                      <td>2</td>
-                      <td>24.000 vnđ</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>
-                        <div class="d-flex align-items-center justify-content-start">
-                          <img
-                            width="40"
-                            height="40"
-                            class="rounded pr-2"
-                            src="https://picsum.photos/300/300"
-                          />
-                          <div class="p-1"></div>
-                          Rau muống
-                        </div>
-                      </td>
-                      <td>12.000 vnđ</td>
-                      <td>2</td>
-                      <td>24.000 vnđ</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>
-                        <div class="d-flex align-items-center justify-content-start">
-                          <img
-                            width="40"
-                            height="40"
-                            class="rounded pr-2"
-                            src="https://picsum.photos/300/300"
-                          />
-                          <div class="p-1"></div>
-                          Rau muống
-                        </div>
-                      </td>
-                      <td>12.000 vnđ</td>
-                      <td>2</td>
-                      <td>24.000 vnđ</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>
-                        <div class="d-flex align-items-center justify-content-start">
-                          <img
-                            width="40"
-                            height="40"
-                            class="rounded pr-2"
-                            src="https://picsum.photos/300/300"
-                          />
-                          <div class="p-1"></div>
-                          Rau muống
-                        </div>
-                      </td>
-                      <td>12.000 vnđ</td>
-                      <td>2</td>
-                      <td>24.000 vnđ</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>
-                        <div class="d-flex align-items-center justify-content-start">
-                          <img
-                            width="40"
-                            height="40"
-                            class="rounded pr-2"
-                            src="https://picsum.photos/300/300"
-                          />
-                          <div class="p-1"></div>
-                          Rau muống
-                        </div>
-                      </td>
-                      <td>12.000 vnđ</td>
-                      <td>2</td>
-                      <td>24.000 vnđ</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>
-                        <div class="d-flex align-items-center justify-content-start">
-                          <img
-                            width="40"
-                            height="40"
-                            class="rounded pr-2"
-                            src="https://picsum.photos/300/300"
-                          />
-                          <div class="p-1"></div>
-                          Rau muống
-                        </div>
-                      </td>
-                      <td>12.000 vnđ</td>
-                      <td>2</td>
-                      <td>24.000 vnđ</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>
-                        <div class="d-flex align-items-center justify-content-start">
-                          <img
-                            width="40"
-                            height="40"
-                            class="rounded pr-2"
-                            src="https://picsum.photos/300/300"
-                          />
-                          <div class="p-1"></div>
-                          Rau muống
-                        </div>
-                      </td>
-                      <td>12.000 vnđ</td>
-                      <td>2</td>
-                      <td>24.000 vnđ</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>
-                        <div class="d-flex align-items-center justify-content-start">
-                          <img
-                            width="40"
-                            height="40"
-                            class="rounded pr-2"
-                            src="https://picsum.photos/300/300"
-                          />
-                          <div class="p-1"></div>
-                          Rau muống
-                        </div>
-                      </td>
-                      <td>12.000 vnđ</td>
-                      <td>2</td>
-                      <td>24.000 vnđ</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>
-                        <div class="d-flex align-items-center justify-content-start">
-                          <img
-                            width="40"
-                            height="40"
-                            class="rounded pr-2"
-                            src="https://picsum.photos/300/300"
-                          />
-                          <div class="p-1"></div>
-                          Rau muống
-                        </div>
-                      </td>
-                      <td>12.000 vnđ</td>
-                      <td>2</td>
-                      <td>24.000 vnđ</td>
-                    </tr>
-                  </tbody>
-                </table>
-                <div class="row mb-4">
-                  <div class="col-md-6"></div>
-                  <div class="col-md-6">
-                    Tổng tiền
-                    <div class="mb-2 d-flex justify-content-between">
-                      Tiền hàng hóa<strong>5.000.000</strong>
-                    </div>
-                    <div class="mb-2 d-flex justify-content-between">
-                      Phí vận chuyển<strong>5.000</strong>
-                    </div>
-                    <div class="mb-2 d-flex justify-content-between">
-                      Tổng<strong><h4 class="mb-4">5.000.000 vnđ</h4></strong>
-                    </div>
-                  </div>
+                    </a>
                 </div>
-                <div class="my-3 d-flex justify-content-between">
-                  <div class="col">
-                    <div>Phản ánh chất lượng và dịch vụ</div>
-                    <a><strong>0123456789</strong></a>
-                  </div>
-                  <p>Hóa đơn đã bao gồm thuế VAT</p>
+                <div class="d-flex justify-content-center">
+                    <a href="index.html">Đăng xuất</a>
                 </div>
-              </div>
             </div>
-          </div>
+            <div class="col-2 nav-bar-custom"></div>
+            <div class="col p-5">
+                <h3>Lịch sử đặt hàng</h3>
+                <div class="container pt-3">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h4>Đơn hàng #00001</h4>
+                                <p>Hóa đơn ngày: 20/01/2022</p>
+                                <p>
+                                    <a class="btn" href="#"></a>
+                                </p>
+                                <div class="row mb-4">
+                                    <div class="col-md-6">
+                                        <h5>Bên gửi</h5>
+                                        <div>NV. Trung Hiếu</div>
+                                        <div>Cửa hàng Bách Hóa Xanh</div>
+                                        <div>SDT: 0123456789</div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h5>Bên nhận</h5>
+                                        <div>Văn Đô</div>
+                                        <div>01 Nguyễn Văn Cừ, Q5, TP.HCM</div>
+                                        <div>SDT: 0123456789</div>
+                                    </div>
+                                </div>
+                                <table class="table mb-4">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Sản phẩm</th>
+                                            <th scope="col">Đơn giá</th>
+                                            <th scope="col">Số lượng</th>
+                                            <th scope="col">Tổng giá</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>
+                                                <div
+                                                    class="d-flex align-items-center justify-content-start"
+                                                >
+                                                    <img
+                                                        width="40"
+                                                        height="40"
+                                                        class="rounded pr-2"
+                                                        src="https://picsum.photos/300/300"
+                                                    />
+                                                    <div class="p-1"></div>
+                                                    Rau muống
+                                                </div>
+                                            </td>
+                                            <td>12.000 vnđ</td>
+                                            <td>2</td>
+                                            <td>24.000 vnđ</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>
+                                                <div
+                                                    class="d-flex align-items-center justify-content-start"
+                                                >
+                                                    <img
+                                                        width="40"
+                                                        height="40"
+                                                        class="rounded pr-2"
+                                                        src="https://picsum.photos/300/300"
+                                                    />
+                                                    <div class="p-1"></div>
+                                                    Rau muống
+                                                </div>
+                                            </td>
+                                            <td>12.000 vnđ</td>
+                                            <td>2</td>
+                                            <td>24.000 vnđ</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>
+                                                <div
+                                                    class="d-flex align-items-center justify-content-start"
+                                                >
+                                                    <img
+                                                        width="40"
+                                                        height="40"
+                                                        class="rounded pr-2"
+                                                        src="https://picsum.photos/300/300"
+                                                    />
+                                                    <div class="p-1"></div>
+                                                    Rau muống
+                                                </div>
+                                            </td>
+                                            <td>12.000 vnđ</td>
+                                            <td>2</td>
+                                            <td>24.000 vnđ</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>
+                                                <div
+                                                    class="d-flex align-items-center justify-content-start"
+                                                >
+                                                    <img
+                                                        width="40"
+                                                        height="40"
+                                                        class="rounded pr-2"
+                                                        src="https://picsum.photos/300/300"
+                                                    />
+                                                    <div class="p-1"></div>
+                                                    Rau muống
+                                                </div>
+                                            </td>
+                                            <td>12.000 vnđ</td>
+                                            <td>2</td>
+                                            <td>24.000 vnđ</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>
+                                                <div
+                                                    class="d-flex align-items-center justify-content-start"
+                                                >
+                                                    <img
+                                                        width="40"
+                                                        height="40"
+                                                        class="rounded pr-2"
+                                                        src="https://picsum.photos/300/300"
+                                                    />
+                                                    <div class="p-1"></div>
+                                                    Rau muống
+                                                </div>
+                                            </td>
+                                            <td>12.000 vnđ</td>
+                                            <td>2</td>
+                                            <td>24.000 vnđ</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>
+                                                <div
+                                                    class="d-flex align-items-center justify-content-start"
+                                                >
+                                                    <img
+                                                        width="40"
+                                                        height="40"
+                                                        class="rounded pr-2"
+                                                        src="https://picsum.photos/300/300"
+                                                    />
+                                                    <div class="p-1"></div>
+                                                    Rau muống
+                                                </div>
+                                            </td>
+                                            <td>12.000 vnđ</td>
+                                            <td>2</td>
+                                            <td>24.000 vnđ</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>
+                                                <div
+                                                    class="d-flex align-items-center justify-content-start"
+                                                >
+                                                    <img
+                                                        width="40"
+                                                        height="40"
+                                                        class="rounded pr-2"
+                                                        src="https://picsum.photos/300/300"
+                                                    />
+                                                    <div class="p-1"></div>
+                                                    Rau muống
+                                                </div>
+                                            </td>
+                                            <td>12.000 vnđ</td>
+                                            <td>2</td>
+                                            <td>24.000 vnđ</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>
+                                                <div
+                                                    class="d-flex align-items-center justify-content-start"
+                                                >
+                                                    <img
+                                                        width="40"
+                                                        height="40"
+                                                        class="rounded pr-2"
+                                                        src="https://picsum.photos/300/300"
+                                                    />
+                                                    <div class="p-1"></div>
+                                                    Rau muống
+                                                </div>
+                                            </td>
+                                            <td>12.000 vnđ</td>
+                                            <td>2</td>
+                                            <td>24.000 vnđ</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>
+                                                <div
+                                                    class="d-flex align-items-center justify-content-start"
+                                                >
+                                                    <img
+                                                        width="40"
+                                                        height="40"
+                                                        class="rounded pr-2"
+                                                        src="https://picsum.photos/300/300"
+                                                    />
+                                                    <div class="p-1"></div>
+                                                    Rau muống
+                                                </div>
+                                            </td>
+                                            <td>12.000 vnđ</td>
+                                            <td>2</td>
+                                            <td>24.000 vnđ</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>
+                                                <div
+                                                    class="d-flex align-items-center justify-content-start"
+                                                >
+                                                    <img
+                                                        width="40"
+                                                        height="40"
+                                                        class="rounded pr-2"
+                                                        src="https://picsum.photos/300/300"
+                                                    />
+                                                    <div class="p-1"></div>
+                                                    Rau muống
+                                                </div>
+                                            </td>
+                                            <td>12.000 vnđ</td>
+                                            <td>2</td>
+                                            <td>24.000 vnđ</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>
+                                                <div
+                                                    class="d-flex align-items-center justify-content-start"
+                                                >
+                                                    <img
+                                                        width="40"
+                                                        height="40"
+                                                        class="rounded pr-2"
+                                                        src="https://picsum.photos/300/300"
+                                                    />
+                                                    <div class="p-1"></div>
+                                                    Rau muống
+                                                </div>
+                                            </td>
+                                            <td>12.000 vnđ</td>
+                                            <td>2</td>
+                                            <td>24.000 vnđ</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>
+                                                <div
+                                                    class="d-flex align-items-center justify-content-start"
+                                                >
+                                                    <img
+                                                        width="40"
+                                                        height="40"
+                                                        class="rounded pr-2"
+                                                        src="https://picsum.photos/300/300"
+                                                    />
+                                                    <div class="p-1"></div>
+                                                    Rau muống
+                                                </div>
+                                            </td>
+                                            <td>12.000 vnđ</td>
+                                            <td>2</td>
+                                            <td>24.000 vnđ</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>
+                                                <div
+                                                    class="d-flex align-items-center justify-content-start"
+                                                >
+                                                    <img
+                                                        width="40"
+                                                        height="40"
+                                                        class="rounded pr-2"
+                                                        src="https://picsum.photos/300/300"
+                                                    />
+                                                    <div class="p-1"></div>
+                                                    Rau muống
+                                                </div>
+                                            </td>
+                                            <td>12.000 vnđ</td>
+                                            <td>2</td>
+                                            <td>24.000 vnđ</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="row mb-4">
+                                    <div class="col-md-6"></div>
+                                    <div class="col-md-6">
+                                        Tổng tiền
+                                        <div class="mb-2 d-flex justify-content-between">
+                                            Tiền hàng hóa<strong>5.000.000</strong>
+                                        </div>
+                                        <div class="mb-2 d-flex justify-content-between">
+                                            Phí vận chuyển<strong>5.000</strong>
+                                        </div>
+                                        <div class="mb-2 d-flex justify-content-between">
+                                            Tổng<strong><h4 class="mb-4">5.000.000 vnđ</h4></strong>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="my-3 d-flex justify-content-between">
+                                    <div class="col">
+                                        <div>Phản ánh chất lượng và dịch vụ</div>
+                                        <a><strong>0123456789</strong></a>
+                                    </div>
+                                    <p>Hóa đơn đã bao gồm thuế VAT</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </body>
+    </body>
 </html>
