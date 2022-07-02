@@ -22,6 +22,10 @@ module.exports = (sequelize, Datatype) => {
                 type: Datatype.STRING,
                 allowNull: false,
             },
+            type: {
+                type: Datatype.STRING,
+                default: 'admin',
+            },
         },
         {
             underscored: true,
@@ -37,10 +41,10 @@ module.exports = (sequelize, Datatype) => {
             },
         }
     );
-    
+
     Admin.prototype.isValidPassword = async function (candidatePassword, userPassword) {
         return await bcrypt.compare(candidatePassword, userPassword);
     };
-    
+
     return Admin;
 };

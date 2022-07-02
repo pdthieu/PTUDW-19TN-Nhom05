@@ -13,4 +13,7 @@ router
     .get(adminController.isNotLogin, adminController.signInView)
     .post(adminController.signInValidator, adminController.signIn);
 
+router.route('/admin/manager').get(adminController.managerView);
+router.route('/admin/add').get(adminController.addAdminView);
+
 module.exports = router;

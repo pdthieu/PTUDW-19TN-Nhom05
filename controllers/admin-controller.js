@@ -103,3 +103,11 @@ exports.isNotLogin = async (req, res, next) => {
         return next();
     }
 };
+
+exports.managerView = async (req, res) => {
+    return res.render('admin/admin-manager', { title: 'Sign in' });
+};
+
+exports.addAdminView = async (req, res) => {
+    return res.render('admin/add-admin', { title: 'Sign in' });
+};
