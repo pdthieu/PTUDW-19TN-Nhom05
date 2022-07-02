@@ -1,7 +1,8 @@
 const Joi = require('joi');
 const jwt = require('jsonwebtoken');
-const { User } = require('../models');
+const { Admin } = require('../models');
 const signToken = require('../utils/signToken');
+
 const signUpSchema = Joi.object({
     email: Joi.string().email().required().messages({
         'string.empty': `Email is not allowed to be empty`,
@@ -23,7 +24,7 @@ const signInSchema = Joi.object({
     }),
 });
 exports.signUpView = async (req, res) => {
-    return res.render('user/signup', { title: 'Sign up' });
+    return res.render('admin/signup', { title: 'Sign up' });
 };
 
 exports.signUpValidator = async (req, res, next) => {
@@ -32,22 +33,22 @@ exports.signUpValidator = async (req, res, next) => {
         return next();
     } catch (err) {
         console.log(err);
-        return res.render('user/signup', { title: 'Sign up', err: err.details[0].message });
+        return res.render('admin/signup', { title: 'Sign up', err: err.details[0].message });
     }
 };
 exports.signUp = async (req, res) => {
     const body = req.body;
-    const existUser = await User.findOne({ where: { email: body.email } });
-    if (existUser) {
-        return res.render('user/signup', { title: 'Sign up', err: 'Email already exist' });
+    const existAdmin = await Admin.findOne({ where: { email: body.email } });
+    if (existAdmin) {
+        return res.render('admin/signup', { title: 'Sign up', err: 'Email already exist' });
     }
-    await User.create(req.body);
+    await Admin.create(req.body);
     res.clearCookie('jwt');
-    return res.redirect('/user/signin');
+    return res.redirect('/admin/signin');
 };
 
 exports.signInView = async (req, res) => {
-    return res.render('user/signIn', { title: 'Sign in' });
+    return res.render('admin/signIn', { title: 'Sign in' });
 };
 
 exports.signInValidator = async (req, res, next) => {
@@ -57,46 +58,46 @@ exports.signInValidator = async (req, res, next) => {
         return next();
     } catch (err) {
         console.log(err);
-        return res.render('user/signin', { title: 'Sign in', err: err.details[0].message });
+        return res.render('admin/signin', { title: 'Sign in', err: err.details[0].message });
     }
 };
 
 exports.signIn = async (req, res) => {
     const body = req.body;
-    const user = await User.unscoped().findOne({ where: { email: body.email } });
+    const admin = await Admin.unscoped().findOne({ where: { email: body.email } });
 
-    if (!user) {
-        return res.render('user/signin', { title: 'Sign in', err: 'Email or Password is wrong' });
+    if (!admin) {
+        return res.render('admin/signin', { title: 'Sign in', err: 'Email or Password is wrong' });
     }
 
-    const isValidPassword = await user.isValidPassword(body.password, user.password);
+    const isValidPassword = await admin.isValidPassword(body.password, admin.password);
     if (isValidPassword) {
-        res = signToken(res, user.id, 'user');
+        res = signToken(res, admin.id, 'admin');
         return res.redirect('/homepage');
     } else {
-        return res.render('user/signin', { title: 'Sign in', err: 'Email or Password is wrong' });
+        return res.render('admin/signin', { title: 'Sign in', err: 'Email or Password is wrong' });
     }
 };
 
 exports.isLogin = async (req, res, next) => {
-    const token = req.cookies.jwt;
+    const token = req.cookies.jwtadmin;
     try {
         const verify = jwt.verify(token, process.env.JWT_CODE);
-        req.user = verify;
+        req.admin = verify;
         return next();
     } catch (err) {
         res.status(400).json({
             errMsg: 'Auth fails',
         });
-        return res.redirect('/user/homepage');
+        return res.redirect('/admin/homepage');
     }
 };
 
 exports.isNotLogin = async (req, res, next) => {
-    const token = req.cookies.jwt;
+    const token = req.cookies.jwtadmin;
     try {
         const verify = jwt.verify(token, process.env.JWT_CODE);
-        req.user = verify;
+        req.admin = verify;
         return res.redirect('/homepage');
     } catch (err) {
         return next();

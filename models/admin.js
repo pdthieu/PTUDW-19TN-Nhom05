@@ -1,6 +1,8 @@
+const bcrypt = require('bcryptjs');
+const crypto = require('crypto');
 module.exports = (sequelize, Datatype) => {
-    const User = sequelize.define(
-        'users',
+    const Admin = sequelize.define(
+        'admin',
         {
             id: {
                 primaryKey: true,
@@ -11,7 +13,7 @@ module.exports = (sequelize, Datatype) => {
             fullName: {
                 type: Datatype.STRING,
             },
-            username: {
+            email: {
                 type: Datatype.STRING,
                 allowNull: false,
                 unique: true,
@@ -26,7 +28,19 @@ module.exports = (sequelize, Datatype) => {
             timestamps: true,
             charset: 'utf8',
             collate: 'utf8_unicode_ci',
+            hooks: {
+                beforeSave: async function (user) {
+                    if (user.changed('password')) {
+                        user.password = await bcrypt.hash(user.password, 10);
+                    }
+                },
+            },
         }
     );
-    return User;
+    
+    Admin.prototype.isValidPassword = async function (candidatePassword, userPassword) {
+        return await bcrypt.compare(candidatePassword, userPassword);
+    };
+    
+    return Admin;
 };
