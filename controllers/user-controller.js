@@ -2,16 +2,27 @@ const Joi = require('joi');
 const jwt = require('jsonwebtoken');
 const { User } = require('../models');
 const signUpSchema = Joi.object({
-    email: Joi.string().email().required(),
-    fullName: Joi.string().required(),
-    password: Joi.string().pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')).required(),
+    email: Joi.string().email().required().messages({
+        'string.empty': `Email is not allowed to be empty`,
+    }),
+    fullName: Joi.string().required().messages({
+        'string.empty': `Fullname is not allowed to be empty`,
+    }),
+    password: Joi.string().min(6).alphanum().required().messages({
+        'string.empty': `Password is not allowed to be empty`,
+        'string.min': `Password should have a minimum length of {#limit}`,
+    }),
 });
 const signInSchema = Joi.object({
-    email: Joi.string().email().required(),
-    password: Joi.string().pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')).required(),
+    email: Joi.string().email().required().messages({
+        'string.empty': `Email is not allowed to be empty`,
+    }),
+    password: Joi.string().alphanum().required().messages({
+        'string.empty': `Password is not allowed to be empty`,
+    }),
 });
 exports.signUpView = async (req, res) => {
-    return res.render('user/signup', { title: 'Express' });
+    return res.render('user/signup', { title: 'Sign up' });
 };
 
 const signtoken = (res, id) => {
@@ -33,45 +44,49 @@ exports.signUpValidator = async (req, res, next) => {
         return next();
     } catch (err) {
         console.log(err);
-        return res.status(406).json(err[0]);
+        return res.render('user/signup', { title: 'Sign up', err: err.details[0].message });
     }
 };
 exports.signUp = async (req, res) => {
     const body = req.body;
     const existUser = await User.findOne({ where: { email: body.email } });
     if (existUser) {
-        return res.status(406).json({ errMsg: 'Email is already exist' });
+        return res.render('user/signup', { title: 'Sign up', err: 'Email already exist' });
     }
     await User.create(req.body);
-    return res.render('user/signin', { title: 'Express' });
+    res.clearCookie('jwt');
+    return res.redirect('/user/signin');
 };
 
 exports.signInView = async (req, res) => {
-    return res.render('user/signIn', { title: 'Express' });
+    return res.render('user/signIn', { title: 'Sign in' });
 };
 
 exports.signInValidator = async (req, res, next) => {
     try {
         console.log(req.body);
         const body = await signInSchema.validateAsync(req.body);
-        return next;
+        return next();
     } catch (err) {
         console.log(err);
-        return res.status(406).json(err[0]);
+        return res.render('user/signin', { title: 'Sign in', err: err.details[0].message });
     }
 };
 
 exports.signIn = async (req, res) => {
     const body = req.body;
     const user = await User.unscoped().findOne({ where: { email: body.email } });
+
     if (!user) {
-        return res.status(406).json({ errMsg: 'Email or Password is wrong' });
+        return res.render('user/signin', { title: 'Sign in', err: 'Email or Password is wrong' });
     }
 
     const isValidPassword = await user.isValidPassword(body.password, user.password);
     if (isValidPassword) {
         res = signtoken(res, user.id);
-        return res.render('index', { title: 'Express' });
+        return res.redirect('/homepage');
+    } else {
+        return res.render('user/signin', { title: 'Sign in', err: 'Email or Password is wrong' });
     }
 };
 
@@ -85,7 +100,7 @@ exports.isLogin = async (req, res, next) => {
         res.status(400).json({
             errMsg: 'Auth fails',
         });
-        return res.render('user/signIn', { title: 'Express' });
+        return res.redirect('/user/homepage');
     }
 };
 
@@ -94,7 +109,7 @@ exports.isNotLogin = async (req, res, next) => {
     try {
         const verify = jwt.verify(token, process.env.JWT_CODE);
         req.user = verify;
-        return res.render('index', { title: 'Express' });
+        return res.redirect('/homepage');
     } catch (err) {
         return next();
     }

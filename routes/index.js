@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const userRouter = require('./users');
+const userRouter = require('./user-router');
 
 /* GET home page. */
-router.get('/user', function (req, res, next) {
+router.get('/homepage', function (req, res, next) {
     res.render('index', { title: 'Express' });
 });
 
