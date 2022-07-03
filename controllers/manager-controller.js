@@ -1,6 +1,6 @@
 const Joi = require('joi');
 const jwt = require('jsonwebtoken');
-const { Manager } = require('../models');
+const { Admin } = require('../models');
 const signToken = require('../utils/signToken');
 const signUpSchema = Joi.object({
     email: Joi.string().email().required().messages({
@@ -37,17 +37,17 @@ exports.signUpValidator = async (req, res, next) => {
 };
 exports.signUp = async (req, res) => {
     const body = req.body;
-    const existManager = await Manager.findOne({ where: { email: body.email } });
+    const existManager = await Admin.findOne({ where: { email: body.email } });
     if (existManager) {
         return res.render('manager/signup', { title: 'Sign up', err: 'Email already exist' });
     }
-    await Manager.create(req.body);
+    await Admin.create(req.body);
     res.clearCookie('jwt');
-    return res.redirect('/manager/signin');
+    return res.redirect('manager/signin');
 };
 
 exports.signInView = async (req, res) => {
-    return res.render('manager/signIn', { title: 'Sign in' });
+    return res.render('manager/signin', { title: 'Sign in' });
 };
 
 exports.signInValidator = async (req, res, next) => {
@@ -63,18 +63,24 @@ exports.signInValidator = async (req, res, next) => {
 
 exports.signIn = async (req, res) => {
     const body = req.body;
-    const manager = await Manager.unscoped().findOne({ where: { email: body.email } });
+    const manager = await Admin.unscoped().findOne({ where: { email: body.email } });
 
     if (!manager) {
-        return res.render('manager/signin', { title: 'Sign in', err: 'Email or Password is wrong' });
+        return res.render('manager/signin', {
+            title: 'Sign in',
+            err: 'Email or Password is wrong',
+        });
     }
 
     const isValidPassword = await manager.isValidPassword(body.password, manager.password);
     if (isValidPassword) {
         res = signToken(res, manager.id, 'manager');
-        return res.redirect('/homepage');
+        return res.redirect('manager/manager');
     } else {
-        return res.render('manager/signin', { title: 'Sign in', err: 'Email or Password is wrong' });
+        return res.render('manager/signin', {
+            title: 'Sign in',
+            err: 'Email or Password is wrong',
+        });
     }
 };
 
@@ -88,7 +94,7 @@ exports.isLogin = async (req, res, next) => {
         res.status(400).json({
             errMsg: 'Auth fails',
         });
-        return res.redirect('/manager/homepage');
+        return res.redirect('manager/manager');
     }
 };
 
@@ -97,40 +103,38 @@ exports.isNotLogin = async (req, res, next) => {
     try {
         const verify = jwt.verify(token, process.env.JWT_CODE);
         req.manager = verify;
-        return res.redirect('/homepage');
+        return res.redirect('manager/manager');
     } catch (err) {
         return next();
     }
 };
 
-var controller = {}
-var database = require("../models")
-var Users = database.User
-controller.getAll = function(callback){
-    Users
-    .findAll()
-    .then(function(users){
+var controller = {};
+var database = require('../models');
+var Users = database.User;
+controller.getAll = async function (callback) {
+    await Users.findAll().then(function (users) {
         callback(users);
     });
 };
 
 exports.managerHomepagelView = async (req, res) => {
-    controller.getAll(function(users){
+    await controller.getAll(function (users) {
         res.locals.users = users;
-        console.log(users)
+        console.log(users);
         return res.render('manager/manager', { title: 'manager' });
-    })
+    });
 };
 
 exports.addPatientView = async (req, res) => {
     return res.render('manager/addpatient', { title: 'patient' });
-}
+};
 
 exports.paymentManagerView = async (req, res) => {
     return res.render('manager/payment_manager', { title: 'patient' });
-}
+};
 
-exports.inforDetailView = async (req, res) => {
-    var id = req.params.id;
-    return res.render('manager/:id', { title: 'patient' });
-}
+// exports.inforDetailView = async (req, res) => {
+//     var id = req.params.id;
+//     return res.render('manager/:id', { title: 'patient' });
+// };
