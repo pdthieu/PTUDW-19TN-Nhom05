@@ -1,9 +1,7 @@
 const Joi = require('joi');
 const jwt = require('jsonwebtoken');
-const { Admin } = require('../models');
+const { Manager } = require('../models');
 const signToken = require('../utils/signToken');
-
-
 const signUpSchema = Joi.object({
     email: Joi.string().email().required().messages({
         'string.empty': `Email is not allowed to be empty`,
@@ -25,7 +23,7 @@ const signInSchema = Joi.object({
     }),
 });
 exports.signUpView = async (req, res) => {
-    return res.render('admin/signup', { title: 'Sign up' });
+    return res.render('manager/signup', { title: 'Sign up' });
 };
 
 exports.signUpValidator = async (req, res, next) => {
@@ -34,22 +32,22 @@ exports.signUpValidator = async (req, res, next) => {
         return next();
     } catch (err) {
         console.log(err);
-        return res.render('admin/signup', { title: 'Sign up', err: err.details[0].message });
+        return res.render('manager/signup', { title: 'Sign up', err: err.details[0].message });
     }
 };
 exports.signUp = async (req, res) => {
     const body = req.body;
-    const existAdmin = await Admin.findOne({ where: { email: body.email } });
-    if (existAdmin) {
-        return res.render('admin/signup', { title: 'Sign up', err: 'Email already exist' });
+    const existManager = await Manager.findOne({ where: { email: body.email } });
+    if (existManager) {
+        return res.render('manager/signup', { title: 'Sign up', err: 'Email already exist' });
     }
-    await Admin.create(req.body);
+    await Manager.create(req.body);
     res.clearCookie('jwt');
-    return res.redirect('/admin/signin');
+    return res.redirect('/manager/signin');
 };
 
 exports.signInView = async (req, res) => {
-    return res.render('admin/signIn', { title: 'Sign in' });
+    return res.render('manager/signIn', { title: 'Sign in' });
 };
 
 exports.signInValidator = async (req, res, next) => {
@@ -59,59 +57,52 @@ exports.signInValidator = async (req, res, next) => {
         return next();
     } catch (err) {
         console.log(err);
-        return res.render('admin/signin', { title: 'Sign in', err: err.details[0].message });
+        return res.render('manager/signin', { title: 'Sign in', err: err.details[0].message });
     }
 };
 
 exports.signIn = async (req, res) => {
     const body = req.body;
-    const admin = await Admin.unscoped().findOne({ where: { email: body.email } });
+    const manager = await Manager.unscoped().findOne({ where: { email: body.email } });
 
-    if (!admin) {
-        return res.render('admin/signin', { title: 'Sign in', err: 'Email or Password is wrong' });
+    if (!manager) {
+        return res.render('manager/signin', { title: 'Sign in', err: 'Email or Password is wrong' });
     }
 
-    const isValidPassword = await admin.isValidPassword(body.password, admin.password);
+    const isValidPassword = await manager.isValidPassword(body.password, manager.password);
     if (isValidPassword) {
-        res = signToken(res, admin.id, 'admin');
+        res = signToken(res, manager.id, 'manager');
         return res.redirect('/homepage');
     } else {
-        return res.render('admin/signin', { title: 'Sign in', err: 'Email or Password is wrong' });
+        return res.render('manager/signin', { title: 'Sign in', err: 'Email or Password is wrong' });
     }
 };
 
 exports.isLogin = async (req, res, next) => {
-    const token = req.cookies.jwtadmin;
+    const token = req.cookies.jwt;
     try {
         const verify = jwt.verify(token, process.env.JWT_CODE);
-        req.admin = verify;
+        req.manager = verify;
         return next();
     } catch (err) {
         res.status(400).json({
             errMsg: 'Auth fails',
         });
-        return res.redirect('/admin/homepage');
+        return res.redirect('/manager/homepage');
     }
 };
 
 exports.isNotLogin = async (req, res, next) => {
-    const token = req.cookies.jwtadmin;
+    const token = req.cookies.jwt;
     try {
         const verify = jwt.verify(token, process.env.JWT_CODE);
-        req.admin = verify;
+        req.manager = verify;
         return res.redirect('/homepage');
     } catch (err) {
         return next();
     }
 };
 
-exports.managerView = async (req, res) => {
-    return res.render('admin/admin-manager', { title: 'Sign in' });
-};
-
-exports.addAdminView = async (req, res) => {
-    return res.render('admin/add-admin', { title: 'Sign in' });
-};
 var controller = {}
 var database = require("../models")
 var Users = database.User
