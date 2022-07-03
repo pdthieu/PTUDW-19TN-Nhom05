@@ -112,34 +112,3 @@ exports.managerView = async (req, res) => {
 exports.addAdminView = async (req, res) => {
     return res.render('admin/add-admin', { title: 'Sign in' });
 };
-var controller = {}
-var database = require("../models")
-var Users = database.User
-controller.getAll = function(callback){
-    Users
-    .findAll()
-    .then(function(users){
-        callback(users);
-    });
-};
-
-exports.managerHomepagelView = async (req, res) => {
-    controller.getAll(function(users){
-        res.locals.users = users;
-        console.log(users)
-        return res.render('manager/manager', { title: 'manager' });
-    })
-};
-
-exports.addPatientView = async (req, res) => {
-    return res.render('manager/addpatient', { title: 'patient' });
-}
-
-exports.paymentManagerView = async (req, res) => {
-    return res.render('manager/payment_manager', { title: 'patient' });
-}
-
-exports.inforDetailView = async (req, res) => {
-    var id = req.params.id;
-    return res.render('manager/:id', { title: 'patient' });
-}
