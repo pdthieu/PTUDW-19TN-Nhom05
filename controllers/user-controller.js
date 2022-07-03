@@ -47,7 +47,7 @@ exports.signUp = async (req, res) => {
 };
 
 exports.signInView = async (req, res) => {
-    return res.render('user/signIn', { title: 'Sign in' });
+    return res.render('user/signin', { title: 'Sign in' });
 };
 
 exports.signInValidator = async (req, res, next) => {

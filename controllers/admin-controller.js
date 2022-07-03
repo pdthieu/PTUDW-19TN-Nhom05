@@ -49,7 +49,7 @@ exports.signUp = async (req, res) => {
 };
 
 exports.signInView = async (req, res) => {
-    return res.render('admin/signIn', { title: 'Sign in' });
+    return res.render('admin/signin', { title: 'Sign in' });
 };
 
 exports.signInValidator = async (req, res, next) => {
