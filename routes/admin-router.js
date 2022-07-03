@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 const adminController = require('../controllers/admin-controller');
+const admin = require('../models/admin');
 
 router
     .route('/admin/signup')
@@ -15,5 +16,10 @@ router
 
 router.route('/admin/manager').get(adminController.managerView);
 router.route('/admin/add').get(adminController.addAdminView);
+
+router.route('/manager/manager').get(adminController.managerHomepagelView);
+router.route('/manager/addpatient').get(adminController.addPatientView);
+router.route('/manager/payment').get(adminController.paymentManagerView);
+router.route('/manager/:id').get(adminController.inforDetailView);
 
 module.exports = router;

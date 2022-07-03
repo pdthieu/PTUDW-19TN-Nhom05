@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const userRouter = require('./user-router');
 const adminRouter = require('./admin-router');
+const managerRouter = require('./manager-router');
 
 /* GET home page. */
 router.get('/homepage', function (req, res, next) {
@@ -18,5 +19,6 @@ router.get('/manager-neccesary-packet', function (req, res, next) {
 
 router.use(userRouter);
 router.use(adminRouter);
+router.use(managerRouter);
 
 module.exports = router;

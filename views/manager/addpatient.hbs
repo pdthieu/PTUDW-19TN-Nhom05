@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Changa+One&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&family=Roboto&display=swap"
+    rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+  <script src="https://kit.fontawesome.com/1d64da5d4e.js" crossorigin="anonymous"></script>
+  <link rel="icon" type="image/x-icon" href="/assets/logo.png" />
+  <link rel="stylesheet" href="/css/nav.css">
+  <link rel="stylesheet" href="/css/manager.css" />
+  <link rel="stylesheet" href="/css/addpatient.css">
+  <title>Add Patient</title>
+</head>
+
+<body>
+  <div class="d-flex flex-row full-h">
+    <div class="d-flex flex-column col-2 p-4 bg-light full-h">
+      <div id="logo">
+        <img id="logo-image" src="/assets/logo.png" />
+        <h2 id="logo-title">CO.VI</h2>
+      </div>
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="manager.html">
+            <i class="fa-solid fa-user fa-xl"></i> Quản lý bệnh nhân</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="#">
+            <i class="fa-solid fa-cart-shopping fa-xl"></i> Quản lý nhu yếu phẩm</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="#">
+            <i class="fa-solid fa-credit-card fa-xl"></i> Quản lý gói nhu yếu phẩm</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="payment_manager.html">
+            <i class="fa-solid fa-credit-card fa-xl"></i> Quản lý thanh toán</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="#">
+            <i class="fa-solid fa-cloud fa-xl"></i> Thống kê thông tin</a>
+        </li>
+
+      </ul>
+      <div class="d-flex flex-column align-items-center" style="margin-top: auto">
+        <hr />
+        <div class="d-flex flex-row align-items-center">
+          <div>
+            <img
+              src="https://scontent.fsgn5-6.fna.fbcdn.net/v/t39.30808-6/268606412_1968226710014149_7475145565654176129_n.jpg?_nc_cat=108&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=FYU1wF1FvIsAX_nxST5&_nc_ht=scontent.fsgn5-6.fna&oh=00_AT_33jg6-iJZXYnR4ASLCwN9Bld8XRpJ7cqfnj8FzbOr3Q&oe=6264BFC7"
+              alt="" width="32" height="32" class="rounded-circle me-2" />
+          </div>
+          <div class="d-flex flex-column justify-content-center">
+            <strong style="margin: 0px">Văn Đô</strong>
+            <p style="margin: 0px; font-size: 80%; color: #ced4da">@vandovu</p>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex justify-content-center">
+        <a href="index.html">Đăng xuất</a>
+      </div>
+    </div>
+    <div class="col p-5" bis_skin_checked="1">
+      <h3>Quản lý bệnh nhân > Thêm người liên quan đến Covid-19</h3>
+      <div class="p-5">
+      <form>
+        <h5>Thông tin bệnh nhân:</h5>
+        <div class="form-row">
+          <div class="form-group col-md-6 py-2 inline-input name">
+            <label for="inputname">Họ và tên:</label>
+            <input type="text" class="form-control" id="inputname" placeholder="Nhập họ và tên">
+          </div>
+          <div class="form-group py-2 col-md-5 inline-input">
+            <label for="inputIdUser">CMND/CCCD:</label>
+            <input type="text" class="form-control" id="inputIdUser" placeholder="CMND/CCCD">
+          </div>
+        </div>
+        <div class="form-row ">
+          <div class="form-group col-md-6 py-2 inline-input tel">
+            <label for="inputTel">Số điện thoại:</label>
+            <input type="tel" class="form-control" id="inputTel" placeholder="Số điện thoại">
+          </div>
+          <div class="form-group col-md-5 py-2 inline-input">
+            <label for="inputDayofBirth">Ngày sinh:</label>
+            <input type="date"  class="form-control" id="inputDayofBirth">
+          </div>
+        </div>
+        <div class="form-group py-2 ">
+            <label for="inputAddress">Địa chỉ:</label>
+            <input type="text" class="form-control" id="inputAddress" placeholder="Địa chỉ">
+        </div>
+        <div class="form-group py-2">
+          <label for="inputStatus">Tình trạng: </label>
+          <select id="inputStatus" name="inputStatus">
+            <option value="None">Chưa mắc Covid</option>
+            <option value="F0">F0</option>
+            <option value="F1">F1</option>
+            <option value="F2">F2</option>
+            <option value="F3">F3</option>
+            <option value="Recovered">Đã hồi phục</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <div class="form-group  py-2">
+            <label for="inputHistory">Lịch sử truy vết: </label>
+            <textarea class="form-control" id="inputHistory" rows="3"></textarea>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="check">
+            <label class="form-check-label" for="check">
+              Xác nhận thông tin đã điền.
+            </label>
+          </div>
+        </div>
+        <div class="d-flex form-row justify-content-center">
+          <a href="manager.html"><button type="submit" class="btn btn-outline-success confirm">Xác nhận</button></a>
+          <a href="manager.html"><button type="button" class="btn btn-outline-success cancel">Hủy</button></a>
+        </div>
+        
+      </form>
+    </div>
+    </div>
+  </div>
+</html>
