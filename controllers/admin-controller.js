@@ -2,7 +2,7 @@ const Joi = require('joi');
 const jwt = require('jsonwebtoken');
 const { Admin } = require('../models');
 const signToken = require('../utils/signToken');
-
+const database = require('../models');
 
 const signUpSchema = Joi.object({
     email: Joi.string().email().required().messages({
@@ -63,6 +63,29 @@ exports.signInValidator = async (req, res, next) => {
     }
 };
 
+exports.addManagerValidator = async (req, res, next) => {
+    try {
+        const body = await signInSchema.validateAsync(req.body);
+        return next();
+    } catch (err) {
+        return res.render('admin/signin', { title: 'Sign in', err: err.details[0].message });
+    }
+};
+
+exports.addManager = async (req, res) => {
+    try {
+        await Admins.create({
+            fullName: req.body.fullName,
+            email: req.body.email,
+            password: req.body.password,
+            type: 'manager',
+        });
+        return res.redirect('/admin/manager');
+    } catch (error) {
+        return res.render('admin/add-admin', { title: 'Add Manager', err: err.details[0].message });
+    }
+};
+
 exports.signIn = async (req, res) => {
     const body = req.body;
     const admin = await Admin.unscoped().findOne({ where: { email: body.email } });
@@ -105,41 +128,62 @@ exports.isNotLogin = async (req, res, next) => {
     }
 };
 
+const adminController = {};
+const Admins = database.Admin;
+adminController.getAll = function (callback) {
+    Admins.findAll().then((admins) => {
+        callback(admins);
+    });
+};
+
 exports.managerView = async (req, res) => {
-    return res.render('admin/admin-manager', { title: 'Sign in' });
+    adminController.getAll((admins) => {
+        if (admins) {
+            for (const admin of admins) {
+                if (!admin.type) {
+                    admin.type = 'admin';
+                }
+            }
+        }
+        res.locals.admins = admins;
+        return res.render('admin/admin-manager', { title: 'Admin manager' });
+    });
+};
+
+exports.lockAdmin = async (req, res, next) => {
+    const id = req.params.id;
+    await database.Admin.destroy({ where: { id } });
+    return res.redirect('/admin/manager');
 };
 
 exports.addAdminView = async (req, res) => {
     return res.render('admin/add-admin', { title: 'Sign in' });
 };
-var controller = {}
-var database = require("../models")
-var Users = database.User
-controller.getAll = function(callback){
-    Users
-    .findAll()
-    .then(function(users){
+
+const controller = {};
+const Users = database.User;
+controller.getAll = function (callback) {
+    Users.findAll().then(function (users) {
         callback(users);
     });
 };
 
 exports.managerHomepagelView = async (req, res) => {
-    controller.getAll(function(users){
+    controller.getAll(function (users) {
         res.locals.users = users;
-        console.log(users)
         return res.render('manager/manager', { title: 'manager' });
-    })
+    });
 };
 
 exports.addPatientView = async (req, res) => {
     return res.render('manager/addpatient', { title: 'patient' });
-}
+};
 
 exports.paymentManagerView = async (req, res) => {
     return res.render('manager/payment_manager', { title: 'patient' });
-}
+};
 
 exports.inforDetailView = async (req, res) => {
     var id = req.params.id;
     return res.render('manager/:id', { title: 'patient' });
-}
+};

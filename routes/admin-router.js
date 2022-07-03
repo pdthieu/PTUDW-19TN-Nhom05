@@ -14,8 +14,9 @@ router
     .get(adminController.isNotLogin, adminController.signInView)
     .post(adminController.signInValidator, adminController.signIn);
 
-router.route('/admin/manager').get(adminController.managerView);
-router.route('/admin/add').get(adminController.addAdminView);
+router.route('/admin/manager').get(adminController.isLogin, adminController.managerView);
+router.route('/admin/manager/:id').post(adminController.lockAdmin, adminController.managerView);
+router.route('/admin/add').get(adminController.addAdminView).post(adminController.addManager);
 
 router.route('/manager/manager').get(adminController.managerHomepagelView);
 router.route('/manager/addpatient').get(adminController.addPatientView);
