@@ -13,9 +13,9 @@ router
     .get(managerController.isNotLogin, managerController.signInView)
     .post(managerController.signInValidator, managerController.signIn);
 
-router.route('/manager/manager').get(managerController.managerHomepagelView);
+router.route('/manager').get(managerController.managerHomepagelView);
 router.route('/manager/addpatient').get(managerController.addPatientView);
 router.route('/manager/payment').get(managerController.paymentManagerView);
-// router.route('/manager/:id').get(adminController.inforDetailView);
+router.route('/manager/:id').get(managerController.inforDetailView);
 
 module.exports = router;

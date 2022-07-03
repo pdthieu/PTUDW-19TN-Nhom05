@@ -2,6 +2,8 @@ const Joi = require('joi');
 const jwt = require('jsonwebtoken');
 const { Admin } = require('../models');
 const signToken = require('../utils/signToken');
+var database = require('../models');
+
 const signUpSchema = Joi.object({
     email: Joi.string().email().required().messages({
         'string.empty': `Email is not allowed to be empty`,
@@ -63,7 +65,9 @@ exports.signInValidator = async (req, res, next) => {
 
 exports.signIn = async (req, res) => {
     const body = req.body;
-    const manager = await Admin.unscoped().findOne({ where: { email: body.email } });
+    const manager = await Admin.unscoped().findOne({
+        where: { email: body.email, type: 'manager' },
+    });
 
     if (!manager) {
         return res.render('manager/signin', {
@@ -75,7 +79,7 @@ exports.signIn = async (req, res) => {
     const isValidPassword = await manager.isValidPassword(body.password, manager.password);
     if (isValidPassword) {
         res = signToken(res, manager.id, 'manager');
-        return res.redirect('manager/manager');
+        return res.redirect('manager');
     } else {
         return res.render('manager/signin', {
             title: 'Sign in',
@@ -94,7 +98,7 @@ exports.isLogin = async (req, res, next) => {
         res.status(400).json({
             errMsg: 'Auth fails',
         });
-        return res.redirect('manager/manager');
+        return res.redirect('manager');
     }
 };
 
@@ -103,26 +107,24 @@ exports.isNotLogin = async (req, res, next) => {
     try {
         const verify = jwt.verify(token, process.env.JWT_CODE);
         req.manager = verify;
-        return res.redirect('manager/manager');
+        return res.redirect('manager');
     } catch (err) {
         return next();
     }
 };
 
-var controller = {};
-var database = require('../models');
-var Users = database.User;
-controller.getAll = async function (callback) {
-    await Users.findAll().then(function (users) {
-        callback(users);
-    });
-};
-
 exports.managerHomepagelView = async (req, res) => {
+    var controller = {};
+    var Users = database.User;
+    controller.getAll = async function (callback) {
+        await Users.findAll().then(function (users) {
+            callback(users);
+        });
+    };
     await controller.getAll(function (users) {
         res.locals.users = users;
         console.log(users);
-        return res.render('manager/manager', { title: 'manager' });
+        return res.render('/manager', { title: 'manager' });
     });
 };
 
@@ -134,7 +136,7 @@ exports.paymentManagerView = async (req, res) => {
     return res.render('manager/payment_manager', { title: 'patient' });
 };
 
-// exports.inforDetailView = async (req, res) => {
-//     var id = req.params.id;
-//     return res.render('manager/:id', { title: 'patient' });
-// };
+exports.inforDetailView = async (req, res) => {
+    var id = req.params.id;
+    return res.render('manager/:id', { title: 'patient' });
+};
