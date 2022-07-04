@@ -95,6 +95,7 @@ exports.isLogin = async (req, res, next) => {
     const token = req.cookies.jwtmanager;
     try {
         const verify = jwt.verify(token, process.env.JWT_CODE);
+        console.log(verify);
         if (verify.role != 'manager') throw 'auth fails';
         req.manager = verify;
         return next();
@@ -104,8 +105,7 @@ exports.isLogin = async (req, res, next) => {
 };
 
 exports.isNotLogin = async (req, res, next) => {
-    console.log('is not login controller');
-    const token = req.cookies.jwt;
+    const token = req.cookies.jwtmanager;
     try {
         const verify = jwt.verify(token, process.env.JWT_CODE);
         req.manager = verify;
