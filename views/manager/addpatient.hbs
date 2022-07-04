@@ -26,19 +26,19 @@
       </div>
       <ul class="nav flex-column">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="manager.html">
+          <a class="nav-link active" aria-current="page" href="manager">
             <i class="fa-solid fa-user fa-xl"></i> Quản lý bệnh nhân</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="#">
+          <a class="nav-link" aria-current="page" href="manager-neccessary">
             <i class="fa-solid fa-cart-shopping fa-xl"></i> Quản lý nhu yếu phẩm</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="#">
+          <a class="nav-link" aria-current="page" href="manager-neccessary-packet">
             <i class="fa-solid fa-credit-card fa-xl"></i> Quản lý gói nhu yếu phẩm</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="payment_manager.html">
+          <a class="nav-link" aria-current="page" href="payment">
             <i class="fa-solid fa-credit-card fa-xl"></i> Quản lý thanh toán</a>
         </li>
         <li class="nav-item">
@@ -62,32 +62,32 @@
         </div>
       </div>
       <div class="d-flex justify-content-center">
-        <a href="index.html">Đăng xuất</a>
+        <a href="signin">Đăng xuất</a>
       </div>
     </div>
     <div class="col p-5" bis_skin_checked="1">
       <h3>Quản lý bệnh nhân > Thêm người liên quan đến Covid-19</h3>
       <div class="p-5">
-      <form>
+      <form action="/manager/addpatient" method="post">
         <h5>Thông tin bệnh nhân:</h5>
         <div class="form-row">
           <div class="form-group col-md-6 py-2 inline-input name">
             <label for="inputname">Họ và tên:</label>
-            <input type="text" class="form-control" id="inputname" placeholder="Nhập họ và tên">
+            <input type="text" class="form-control" id="inputname" name = "fullName" placeholder="Nhập họ và tên">
           </div>
           <div class="form-group py-2 col-md-5 inline-input">
             <label for="inputIdUser">CMND/CCCD:</label>
-            <input type="text" class="form-control" id="inputIdUser" placeholder="CMND/CCCD">
+            <input type="text" class="form-control" id="inputIdUser" name="identityId" placeholder="CMND/CCCD">
           </div>
         </div>
         <div class="form-row ">
           <div class="form-group col-md-6 py-2 inline-input tel">
-            <label for="inputTel">Số điện thoại:</label>
-            <input type="tel" class="form-control" id="inputTel" placeholder="Số điện thoại">
-          </div>
+              <label for="inputMail">Email:</label>
+              <input type="email" class="form-control" id="inputMail" name="email" placeholder="{{user.email}}">
+            </div>
           <div class="form-group col-md-5 py-2 inline-input">
             <label for="inputDayofBirth">Ngày sinh:</label>
-            <input type="date"  class="form-control" id="inputDayofBirth">
+            <input type="date"  class="form-control"  name="birthday" id="inputDayofBirth">
           </div>
         </div>
         <div class="form-group py-2 ">
@@ -95,8 +95,8 @@
             <input type="text" class="form-control" id="inputAddress" placeholder="Địa chỉ">
         </div>
         <div class="form-group py-2">
-          <label for="inputStatus">Tình trạng: </label>
-          <select id="inputStatus" name="inputStatus">
+          <label for="currentStatus">Tình trạng: </label>
+          <select id="currentStatus" name="currentStatus">
             <option value="None">Chưa mắc Covid</option>
             <option value="F0">F0</option>
             <option value="F1">F1</option>
@@ -120,8 +120,8 @@
           </div>
         </div>
         <div class="d-flex form-row justify-content-center">
-          <a href="manager.html"><button type="submit" class="btn btn-outline-success confirm">Xác nhận</button></a>
-          <a href="manager.html"><button type="button" class="btn btn-outline-success cancel">Hủy</button></a>
+          <button type="submit" class="btn btn-outline-success confirm">Xác nhận</button>
+          <a href="manager"><button type="button" class="btn btn-outline-success cancel">Hủy</button></a>
         </div>
         
       </form>

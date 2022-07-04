@@ -114,27 +114,81 @@ exports.isNotLogin = async (req, res, next) => {
         return next();
     }
 };
-
+var controller = {};
+var Users = database.User;
+controller.getAll = async function (callback) {
+    await Users.findAll().then(function (users) {
+        callback(users);
+    });
+};
 exports.managerHomepagelView = async (req, res) => {
     const users = await User.findAll({ where: {} });
     return res.render('manager/manager', { title: 'manager', users });
 };
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
+exports.search = async (req, res) => {
+    try {
+        console.log('search result')
+        const query = req.body.q;
+        //const users = await User.findAll({ where: { fullName: query  } })
+        const users = await User.findAll({ where: { fullName: {  [Op.like]: `%${query}%` } } })
+        return res.render('manager/manager', { title: 'Search result', users });
+    } catch (error) {
+        console.log(error);
+        return res.redirect('/manager/manager', { title: 'manager' });
+    }
+
+}
+
+exports.deleteUser = async (req, res) => {
+    const id = req.params.id;
+    await database.User.destroy({ where: { id } });
+    return res.redirect('/manager/manager')
+}
 
 exports.addPatientView = async (req, res) => {
     console.log('add patient controller');
     return res.render('manager/addpatient', { title: 'patient' });
 };
 
-exports.paymentManagerView = async (req, res) => {
-    console.log('payment manager view controller');
-    return res.render('manager/payment_manager', { title: 'patient' });
+exports.addNewPatient = async (req, res) => {
+    console.log('add new patient');
+    try {
+        console.log(req.body)
+        await User.create({
+            identityId: req.body.identityId,
+            fullName: req.body.fullName,
+            birthday: req.body.birthday,
+            currentStatus: req.body.currentStatus,
+            email: req.body.email,
+            password: req.body.identityId,
+
+        });
+        console.log('success')
+        return res.redirect('/manager/manager');
+    } catch (error) {
+        console.log(error)
+        return res.render('manager/addpatient', { title: 'Add patient' });
+    }
 };
+
+
+
+
+exports.paymentManagerView = async (req, res) => {
+    //const payment = await TransactionHistory.findAll({ where: {} });
+    console.log('payment manager view controller');
+    return res.render('manager/payment_manager', { title: 'payment' });
+};
+
 
 exports.inforDetailView = async (req, res) => {
     console.log('infor detail view controller');
     var id = req.params.id;
     console.log(id);
-    return res.render('manager/infor-detail', { title: 'patient' });
+    var user = await User.findOne({ where: { id: id } })
+    return res.render('manager/infor-detail', { title: 'patient', user });
 };
 
 exports.managerNeccessaryView = async (req, res) => {

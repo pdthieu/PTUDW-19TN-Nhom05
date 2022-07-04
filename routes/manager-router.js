@@ -44,14 +44,21 @@ router
 
 router
     .route('/manager/manager')
-    .get(managerController.isLogin, managerController.managerHomepagelView);
-router
-    .route('/manager/addpatient')
-    .get(managerController.isLogin, managerController.addPatientView);
-router
-    .route('/manager/payment')
+    .get(managerController.isLogin,managerController.managerHomepagelView)
+    .post(managerController.isLogin,managerController.search)
+
+router.route('/manager/addpatient')
+    .get(managerController.isLogin, managerController.addPatientView)
+    .post(managerController.isLogin, managerController.addNewPatient)
+
+router.route('/manager/payment')
     .get(managerController.isLogin, managerController.paymentManagerView);
-router.route('/manager/:id').get(managerController.isLogin, managerController.inforDetailView);
+
+router.route('/manager/:id')
+    .get(managerController.isLogin, managerController.inforDetailView);
+
+router.route('/manager/delete/:id')
+    .get(managerController.isLogin, managerController.deleteUser, managerController.managerHomepagelView);
 
 router.route('/manager/logout').get(managerController.logout);
 module.exports = router;

@@ -26,19 +26,19 @@
       </div>
       <ul class="nav flex-column">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="manager.html">
+          <a class="nav-link active" aria-current="page" href="manager">
             <i class="fa-solid fa-user fa-xl"></i> Quản lý bệnh nhân</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="manager_neccessary.html">
+          <a class="nav-link" aria-current="page" href="manager_neccessary">
             <i class="fa-solid fa-cart-shopping fa-xl"></i> Quản lý nhu yếu phẩm</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="manager_neccessary_packet.html">
+          <a class="nav-link" aria-current="page" href="manager_neccessary_packet">
             <i class="fa-solid fa-credit-card fa-xl"></i> Quản lý gói nhu yếu phẩm</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="payment_manager.html">
+          <a class="nav-link" aria-current="page" href="payment">
             <i class="fa-solid fa-credit-card fa-xl"></i> Quản lý thanh toán</a>
         </li>
         <li class="nav-item">
@@ -64,64 +64,67 @@
     <div class="col p-5" bis_skin_checked="1">
       <h3>Quản lý bệnh nhân > Thông tin chi tiết</h3>
       <div class="p-5">
-      <form>
-        <h5>Thông tin bệnh nhân:</h5>
-        <div class="form-row">
-          <div class="form-group col-md-6 py-2 inline-input name">
-            <label for="inputname">Họ và tên:</label>
-            <input type="text" class="form-control" id="inputname" placeholder="Vũ Văn Đô">
+        <form action="/manager/update-infor" method="get">
+          <h5>Thông tin bệnh nhân:</h5>
+          <div class="form-row">
+            <div class="form-group col-md-6 py-2 inline-input name">
+              <label for="inputname">Họ và tên:</label>
+              <input type="text" class="form-control" id="inputname" name="fullName" placeholder="{{user.fullName}}">
+            </div>
+            <div class="form-group py-2 col-md-5 inline-input">
+              <label for="inputIdUser">CMND/CCCD:</label>
+              <input type="text" class="form-control" id="inputIdUser" name="identityId" placeholder="{{user.identityId}}">
+
+            </div>
           </div>
-          <div class="form-group py-2 col-md-5 inline-input">
-            <label for="inputIdUser">CMND/CCCD:</label>
-            <input type="text" class="form-control" id="inputIdUser" placeholder="19120007">
+          <div class="form-row ">
+            <div class="form-group col-md-6 py-2 inline-input tel">
+              <label for="inputMail">Email:</label>
+              <input type="email" class="form-control" id="inputMail" name="email" placeholder="{{user.email}}">
+            </div>
+            <div class="form-group col-md-5 py-2 inline-input">
+              <label for="inputDayofBirth">Ngày sinh:</label>
+              <input type="date" value="" class="form-control" name="birthday" id="inputDayofBirth"
+                placeholder="{{user.birthday}}">
+            </div>
           </div>
-        </div>
-        <div class="form-row ">
-          <div class="form-group col-md-6 py-2 inline-input tel">
-            <label for="inputTel">Số điện thoại:</label>
-            <input type="tel" class="form-control" id="inputTel" placeholder="123456789">
-          </div>
-          <div class="form-group col-md-5 py-2 inline-input">
-            <label for="inputDayofBirth">Ngày sinh:</label>
-            <input type="date" value="" class="form-control" id="inputDayofBirth">
-          </div>
-        </div>
-        <div class="form-group py-2 ">
+          <div class="form-group py-2 ">
             <label for="inputAddress">Địa chỉ:</label>
             <input type="text" class="form-control" id="inputAddress" placeholder="Nguyễn Văn Cừ, Quận 5, TPHCM">
-        </div>
-        <div class="form-group py-2">
-          <label for="inputStatus">Tình trạng: </label>
-          <select id="inputStatus" name="inputStatus">
-            <option value="None">Chưa mắc Covid</option>
-            <option value="F0">F0</option>
-            <option value="F1" selected="selected">F1</option>
-            <option value="F2">F2</option>
-            <option value="F3">F3</option>
-            <option value="Recovered">Đã hồi phục</option>
-          </select>
-        </div>
-        <div class="form-row">
-          <div class="form-group  py-2">
-            <label for="inputHistory">Lịch sử truy vết: </label>
-            <textarea class="form-control" id="inputHistory" rows="3" placeholder="Chưa từng bị Covid-19"></textarea>
           </div>
-        </div>
-        <div class="form-group">
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="check">
-            <label class="form-check-label" for="check">
-              Xác nhận thông tin chỉnh sửa nếu có.
-            </label>
+          <div class="form-group py-2">
+            <label for="currentStatus">Tình trạng: </label>
+            <select id="currentStatus" name="currentStatus" aria-placeholder="{{user.currentStatus}}">
+              <option value="None">Chưa mắc Covid</option>
+              <option value="F0">F0</option>
+              <option value="F1" selected="selected">F1</option>
+              <option value="F2">F2</option>
+              <option value="F3">F3</option>
+              <option value="Recovered">Đã hồi phục</option>
+            </select>
           </div>
-        </div>
-        <div class="d-flex form-row justify-content-center">
-          <a href="manager.html"><button type="submit" class="btn btn-outline-success confirm">Xác nhận</button></a>
-          <a href="manager.html"><button type="button" class="btn btn-outline-success cancel">Thoát</button></a>
-        </div>
-        
-      </form>
-    </div>
+          <div class="form-row">
+            <div class="form-group  py-2">
+              <label for="inputHistory">Lịch sử truy vết: </label>
+              <textarea class="form-control" id="inputHistory" rows="3" placeholder="Chưa từng bị Covid-19"></textarea>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="check">
+              <label class="form-check-label" for="check">
+                Xác nhận thông tin chỉnh sửa nếu có.
+              </label>
+            </div>
+          </div>
+          <div class="d-flex form-row justify-content-center">
+            <a href="manager"><button type="submit" class="btn btn-outline-success confirm">Xác nhận</button></a>
+            <a href="manager"><button type="button" class="btn btn-outline-success cancel">Thoát</button></a>
+          </div>
+
+        </form>
+      </div>
     </div>
   </div>
+
 </html>
