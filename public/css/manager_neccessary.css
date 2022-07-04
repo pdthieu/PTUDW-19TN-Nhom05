@@ -1,38 +1,38 @@
 .card-text {
-  color: #5b6f84;
-  font-size: 90%;
+    color: #5b6f84;
+    font-size: 90%;
 }
 
 * {
-  font-family: Roboto;
+    font-family: Roboto;
 }
 
 .shadow {
-  box-shadow: 2px 2px;
+    box-shadow: 2px 2px;
 }
 
 .search-button {
-  width: 140px !important;
-  margin-right: 10px;
+    width: 140px !important;
+    margin-right: 10px;
 }
 
 .form-select-filter {
-  margin-right: 20px;
+    margin-right: 20px;
 }
 
 table {
-  border-collapse: collapse;
-  width: 100%;
+    border-collapse: collapse;
+    width: 100%;
 }
 
 td div {
-  justify-content: center;
+    justify-content: center;
 }
 
 th,
 td {
-  text-align: center;
-  padding: 10px;
+    text-align: center;
+    padding: 10px;
 }
 
 /* 

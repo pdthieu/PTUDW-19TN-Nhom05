@@ -17,27 +17,40 @@ router
     .route('/manager/manager-neccessary')
     .get(managerController.isLogin, managerController.managerNeccessaryView);
 
+router.route('/manager/manager-neccessary/delete/:id').get(managerController.deleteNeccessary);
+
+
 router
     .route('/manager/add-neccessary')
-    .get(managerController.isLogin, managerController.managerAddNeccessaryView);
-router
-    .route('/manager/info-neccessary')
-    .get(managerController.isLogin, managerController.managerInfoNeccessaryView);
+    .get(managerController.isLogin, managerController.managerAddNeccessaryView)
+    .post(managerController.addNeccessary);
 
 router
-    .route('/manager/manager-neccessary-packet')
-    .get(managerController.isLogin, managerController.managerNeccessaryPacketView);
+    .route('/manager/info-neccessary/:id')
+    .get(managerController.isLogin, managerController.managerInfoNeccessaryView)
+    .post(managerController.updateNeccessary);
 
 router
-    .route('/manager/add-neccessary-packet')
-    .get(managerController.isLogin, managerController.managerAddNeccessaryPacketView);
-router
-    .route('/manager/info-neccessary-packet')
-    .get(managerController.isLogin, managerController.managerInfoNeccessaryPacketView);
+    .route('/manager/manager-neccessary-package')
+    .get(managerController.isLogin, managerController.managerNeccessaryPackageView);
 
-router.route('/manager/manager').get(managerController.isLogin, managerController.managerHomepagelView);
-router.route('/manager/addpatient').get(managerController.isLogin, managerController.addPatientView);
-router.route('/manager/payment').get(managerController.isLogin, managerController.paymentManagerView);
+router
+    .route('/manager/add-neccessary-package')
+    .get(managerController.isLogin, managerController.managerAddNeccessaryPackageView);
+
+router
+    .route('/manager/info-neccessary-package')
+    .get(managerController.isLogin, managerController.managerInfoNeccessaryPackageView);
+
+router
+    .route('/manager/manager')
+    .get(managerController.isLogin, managerController.managerHomepagelView);
+router
+    .route('/manager/addpatient')
+    .get(managerController.isLogin, managerController.addPatientView);
+router
+    .route('/manager/payment')
+    .get(managerController.isLogin, managerController.paymentManagerView);
 router.route('/manager/:id').get(managerController.isLogin, managerController.inforDetailView);
 
 module.exports = router;

@@ -21,6 +21,9 @@ module.exports = (sequelize, Datatype) => {
             unit: {
                 type: Datatype.STRING,
             },
+            category: {
+                type: Datatype.STRING,
+            },
         },
         {
             underscored: true,

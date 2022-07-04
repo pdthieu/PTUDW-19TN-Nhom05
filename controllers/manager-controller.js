@@ -1,6 +1,6 @@
 const Joi = require('joi');
 const jwt = require('jsonwebtoken');
-const { Admin, User } = require('../models');
+const { Admin, User, Product, ProductPackage, Package } = require('../models');
 const signToken = require('../utils/signToken');
 var database = require('../models');
 
@@ -24,6 +24,7 @@ const signInSchema = Joi.object({
         'string.empty': `Password is not allowed to be empty`,
     }),
 });
+
 exports.signUpView = async (req, res) => {
     return res.render('manager/signup', { title: 'Sign up' });
 };
@@ -115,20 +116,6 @@ exports.isNotLogin = async (req, res, next) => {
 };
 
 exports.managerHomepagelView = async (req, res) => {
-    // console.log('manager homepage view controller');
-    // var controller = {};
-    // var Users = database.User;
-    // controller.getAll = async function (callback) {
-    //     await Users.findAll().then(function (users) {
-    //         callback(users);
-    //     });
-    // };
-    // await controller.getAll(function (users) {
-    //     res.locals.users = users;
-    //     console.log(users);
-    //     return res.render('manager/manager', { title: 'manager' });
-    // });
-
     const users = await User.findAll({ where: {} });
     return res.render('manager/manager', { title: 'manager', users });
 };
@@ -151,31 +138,139 @@ exports.inforDetailView = async (req, res) => {
 };
 
 exports.managerNeccessaryView = async (req, res) => {
-    console.log('manager neccessary controller');
-    return res.render('manager/manager-neccessary', { title: 'manager neccessary' });
+    const products = await Product.findAll({ where: {} });
+    return res.render('manager/manager-neccessary', { title: 'Manager Neccessary', products });
 };
 
 exports.managerAddNeccessaryView = async (req, res) => {
     console.log('add neccessary view controller');
-    return res.render('manager/add-neccessary', { title: 'add neccessary' });
+    return res.render('manager/add-neccessary', { title: 'Add Neccessary' });
+};
+
+exports.addNeccessary = async (req, res) => {
+    console.log(req.body);
+    try {
+        await Product.create({
+            productName: req.body.productName,
+            currentPrice: req.body.currentPrice,
+            unit: req.body.unit,
+            images: {},
+            category: req.body.category,
+        });
+        console.log('add thanh cong');
+        return res.redirect('manager-neccessary');
+    } catch (err) {
+        console.log(err);
+        return res.render('manager/add-neccessary', {
+            title: 'error Add neccessary',
+            err: err,
+        });
+    }
+};
+
+exports.updateNeccessary = async (req, res) => {
+    const id = req.params.id;
+    try {
+        const product = await Product.findOne({ where: { id } });
+        console.log(id);
+        console.log(req.body);
+        if (product) {
+            product.productName = req.body.productName;
+            product.currentPrice = req.body.currentPrice;
+            product.unit = req.body.unit;
+            product.category = req.body.category;
+            await product.save();
+        }
+        return res.redirect('/manager/manager-neccessary');
+    } catch (err) {
+        console.log(err);
+        return res.redirect('/manager/manager-neccessary');
+    }
 };
 
 exports.managerInfoNeccessaryView = async (req, res) => {
-    console.log('info neccessary view controller');
-    return res.render('manager/info-neccessary', { title: 'info neccessary' });
+    const id = req.params.id;
+    const product = await Product.findOne({ where: { id } });
+    if (product) {
+        console.log('info neccessary view controller');
+        return res.render('manager/info-neccessary', { title: 'info neccessary', product, id });
+    } else {
+        console.log('cailozz');
+        return res.redirect('/manager/manager-neccessary');
+    }
 };
 
-exports.managerNeccessaryPacketView = async (req, res) => {
-    console.log('manager neccessary packet controller');
-    return res.render('manager/manager-neccessary-packet', { title: 'manager neccessary packet' });
+exports.deleteNeccessary = async (req, res) => {
+    const id = req.params.id;
+    try {
+        await Product.destroy({ where: { id } });
+        return res.redirect('/manager/manager-neccessary');
+    } catch (err) {
+        console.log(err);
+        return res.redirect('/manager/manager-neccessary');
+    }
 };
 
-exports.managerAddNeccessaryPacketView = async (req, res) => {
-    console.log('add neccessary packet view controller');
-    return res.render('manager/add-neccessary-packet', { title: 'add neccessary packet' });
+exports.managerNeccessaryPackageView = async (req, res) => {
+    // console.log('manager neccessary package controller');
+    // var packages = await Package.findAll({ where: {} });
+    // var newPackages = [];
+    // packages.forEach((element) {
+    //     var products = ProductPackage.findAll({ where: { packageId: element.id } });
+    //     newPackages.push({ ...packages, quantity: products.length });
+    // });
+    // console.log(newPackages);
+    return res.render('manager/manager-neccessary-package', {
+        title: 'manager neccessary package',
+        // newPackages,
+    });
 };
 
-exports.managerInfoNeccessaryPacketView = async (req, res) => {
-    console.log('info neccessary packet view controller');
-    return res.render('manager/info-neccessary-packet', { title: 'info neccessary packet' });
+exports.addNeccessaryPackage = async (req, res) => {
+    console.log(req.body);
+    try {
+        await ProductPackage.create({
+            productName: req.body.productName,
+            currentPrice: req.body.currentPrice,
+            unit: req.body.unit,
+            images: {},
+            category: req.body.category,
+        });
+        console.log('add package thanh cong');
+        return res.redirect('manager-neccessary-package');
+    } catch (err) {
+        console.log(err);
+        return res.render('manager/add-neccessary-package', {
+            title: 'error Add neccessary package',
+            err: err,
+        });
+    }
+};
+
+exports.updateNeccessaryPackage = async (req, res) => {
+    const id = req.params.id;
+    try {
+        const productPackage = await ProductPackage.findOne({ where: { id } });
+        if (productPackage) {
+            productPackage.productName = req.body.productName;
+            productPackage.currentPrice = req.body.currentPrice;
+            productPackage.unit = req.body.unit;
+            productPackage.category = req.body.category;
+            await productPackage.save();
+        }
+        return res.render('manager/info-neccessary-package', { title: 'Info Neccessary' });
+    } catch (err) {
+        console.log(err);
+        return res.render('manager/info-neccessary-package', { title: 'Error Update Neccessary' });
+    }
+};
+
+exports.managerAddNeccessaryPackageView = async (req, res) => {
+    console.log('add neccessary package view controller');
+    return res.render('manager/add-neccessary-package', { title: 'add neccessary package' });
+};
+
+exports.managerInfoNeccessaryPackageView = async (req, res) => {
+    console.log('info neccessary package view controller');
+    return res.render('manager/info-neccessary-package', { title: 'info neccessary package' });
 };
