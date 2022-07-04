@@ -22,13 +22,5 @@ router
     .route('/admin/add')
     .get(adminController.isLogin, adminController.addAdminView)
     .post(adminController.isLogin, adminController.addManager);
-<<<<<<< HEAD
-
-router.route('/manager/manager').get(adminController.managerHomepagelView);
-router.route('/manager/addpatient').get(adminController.addPatientView);
-router.route('/manager/payment').get(adminController.paymentManagerView);
-router.route('/manager/:id').get(adminController.inforDetailView);
-=======
->>>>>>> 61084e97092bd6e028d59f833afc2f2d1e594a9e
 
 module.exports = router;

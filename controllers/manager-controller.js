@@ -1,10 +1,6 @@
 const Joi = require('joi');
 const jwt = require('jsonwebtoken');
-<<<<<<< HEAD
 const { Admin, User, TransactionHistory } = require('../models');
-=======
-const { Admin, User } = require('../models');
->>>>>>> 61084e97092bd6e028d59f833afc2f2d1e594a9e
 const signToken = require('../utils/signToken');
 var database = require('../models');
 
@@ -125,59 +121,73 @@ controller.getAll = async function (callback) {
     });
 };
 exports.managerHomepagelView = async (req, res) => {
-<<<<<<< HEAD
-
-    await controller.getAll(function (users) {
-        res.locals.users = users;
-        console.log(users);
-        return res.render('/manager', { title: 'manager' });
-    });
-=======
-    // console.log('manager homepage view controller');
-    // var controller = {};
-    // var Users = database.User;
-    // controller.getAll = async function (callback) {
-    //     await Users.findAll().then(function (users) {
-    //         callback(users);
-    //     });
-    // };
-    // await controller.getAll(function (users) {
-    //     res.locals.users = users;
-    //     console.log(users);
-    //     return res.render('manager/manager', { title: 'manager' });
-    // });
-
     const users = await User.findAll({ where: {} });
     return res.render('manager/manager', { title: 'manager', users });
->>>>>>> 61084e97092bd6e028d59f833afc2f2d1e594a9e
 };
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
+exports.search = async (req, res) => {
+    try {
+        console.log('search result')
+        const query = req.body.q;
+        //const users = await User.findAll({ where: { fullName: query  } })
+        const users = await User.findAll({ where: { fullName: {  [Op.like]: `%${query}%` } } })
+        return res.render('manager/manager', { title: 'Search result', users });
+    } catch (error) {
+        console.log(error);
+        return res.redirect('/manager/manager', { title: 'manager' });
+    }
+
+}
+
+exports.deleteUser = async (req, res) => {
+    const id = req.params.id;
+    await database.User.destroy({ where: { id } });
+    return res.redirect('/manager/manager')
+}
 
 exports.addPatientView = async (req, res) => {
     console.log('add patient controller');
     return res.render('manager/addpatient', { title: 'patient' });
 };
 
-exports.paymentManagerView = async (req, res) => {
-<<<<<<< HEAD
-    var payment = await TransactionHistory.findAll({where{}});
+exports.addNewPatient = async (req, res) => {
+    console.log('add new patient');
+    try {
+        console.log(req.body)
+        await User.create({
+            identityId: req.body.identityId,
+            fullName: req.body.fullName,
+            birthday: req.body.birthday,
+            currentStatus: req.body.currentStatus,
+            email: req.body.email,
+            password: req.body.identityId,
 
-    return res.render('manager/payment_manager', { title: 'payment manager' });
-=======
+        });
+        console.log('success')
+        return res.redirect('/manager/manager');
+    } catch (error) {
+        console.log(error)
+        return res.render('manager/addpatient', { title: 'Add patient' });
+    }
+};
+
+
+
+
+exports.paymentManagerView = async (req, res) => {
+    //const payment = await TransactionHistory.findAll({ where: {} });
     console.log('payment manager view controller');
-    return res.render('manager/payment_manager', { title: 'patient' });
->>>>>>> 61084e97092bd6e028d59f833afc2f2d1e594a9e
+    return res.render('manager/payment_manager', { title: 'payment' });
 };
 
 
 exports.inforDetailView = async (req, res) => {
     console.log('infor detail view controller');
     var id = req.params.id;
-<<<<<<< HEAD
-    return res.render('manager/infor-detail', { title: 'patient' });
-
-=======
     console.log(id);
-    return res.render('manager/infor-detail', { title: 'patient' });
+    var user = await User.findOne({ where: { id: id } })
+    return res.render('manager/infor-detail', { title: 'patient', user });
 };
 
 exports.managerNeccessaryView = async (req, res) => {
@@ -208,5 +218,4 @@ exports.managerAddNeccessaryPacketView = async (req, res) => {
 exports.managerInfoNeccessaryPacketView = async (req, res) => {
     console.log('info neccessary packet view controller');
     return res.render('manager/info-neccessary-packet', { title: 'info neccessary packet' });
->>>>>>> 61084e97092bd6e028d59f833afc2f2d1e594a9e
 };

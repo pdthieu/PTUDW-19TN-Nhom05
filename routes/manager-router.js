@@ -35,16 +35,22 @@ router
     .route('/manager/info-neccessary-packet')
     .get(managerController.isLogin, managerController.managerInfoNeccessaryPacketView);
 
-<<<<<<< HEAD
-router.route('/manager/manager').get(managerController.managerHomepagelView);
-router.route('/manager/addpatient').get(managerController.addPatientView);
-router.route('/manager/payment').get(managerController.paymentManagerView);
-router.route('/manager/:id').get(managerController.inforDetailView);
-=======
-router.route('/manager/manager').get(managerController.isLogin, managerController.managerHomepagelView);
-router.route('/manager/addpatient').get(managerController.isLogin, managerController.addPatientView);
-router.route('/manager/payment').get(managerController.isLogin, managerController.paymentManagerView);
-router.route('/manager/:id').get(managerController.isLogin, managerController.inforDetailView);
->>>>>>> 61084e97092bd6e028d59f833afc2f2d1e594a9e
+router
+    .route('/manager/manager')
+    .get(managerController.isLogin,managerController.managerHomepagelView)
+    .post(managerController.isLogin,managerController.search)
+
+router.route('/manager/addpatient')
+    .get(managerController.isLogin, managerController.addPatientView)
+    .post(managerController.isLogin, managerController.addNewPatient)
+
+router.route('/manager/payment')
+    .get(managerController.isLogin, managerController.paymentManagerView);
+
+router.route('/manager/:id')
+    .get(managerController.isLogin, managerController.inforDetailView);
+
+router.route('/manager/delete/:id')
+    .get(managerController.isLogin, managerController.deleteUser, managerController.managerHomepagelView);
 
 module.exports = router;
