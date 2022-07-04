@@ -17,23 +17,30 @@ router
     .route('/manager/manager-neccessary')
     .get(managerController.isLogin, managerController.managerNeccessaryView);
 
+router.route('/manager/manager-neccessary/delete/:id').get(managerController.deleteNeccessary);
+
+
 router
     .route('/manager/add-neccessary')
-    .get(managerController.isLogin, managerController.managerAddNeccessaryView);
-router
-    .route('/manager/info-neccessary')
-    .get(managerController.isLogin, managerController.managerInfoNeccessaryView);
+    .get(managerController.isLogin, managerController.managerAddNeccessaryView)
+    .post(managerController.addNeccessary);
 
 router
-    .route('/manager/manager-neccessary-packet')
-    .get(managerController.isLogin, managerController.managerNeccessaryPacketView);
+    .route('/manager/info-neccessary/:id')
+    .get(managerController.isLogin, managerController.managerInfoNeccessaryView)
+    .post(managerController.updateNeccessary);
 
 router
-    .route('/manager/add-neccessary-packet')
-    .get(managerController.isLogin, managerController.managerAddNeccessaryPacketView);
+    .route('/manager/manager-neccessary-package')
+    .get(managerController.isLogin, managerController.managerNeccessaryPackageView);
+
 router
-    .route('/manager/info-neccessary-packet')
-    .get(managerController.isLogin, managerController.managerInfoNeccessaryPacketView);
+    .route('/manager/add-neccessary-package')
+    .get(managerController.isLogin, managerController.managerAddNeccessaryPackageView);
+
+router
+    .route('/manager/info-neccessary-package')
+    .get(managerController.isLogin, managerController.managerInfoNeccessaryPackageView);
 
 router
     .route('/manager/manager')
@@ -53,4 +60,5 @@ router.route('/manager/:id')
 router.route('/manager/delete/:id')
     .get(managerController.isLogin, managerController.deleteUser, managerController.managerHomepagelView);
 
+router.route('/manager/logout').get(managerController.logout);
 module.exports = router;

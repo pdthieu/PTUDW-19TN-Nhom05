@@ -13,4 +13,5 @@ router
     .get(userController.isNotLogin, userController.signInView)
     .post(userController.signInValidator, userController.signIn);
 
+router.route('/user/logout').get(userController.logout);
 module.exports = router;

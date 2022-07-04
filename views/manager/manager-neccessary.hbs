@@ -12,6 +12,7 @@
   <script src="https://kit.fontawesome.com/1d64da5d4e.js" crossorigin="anonymous"></script>
   <link rel="icon" type="image/x-icon" href="/assets/logo.png" />
   <link rel="stylesheet" href="/css/nav.css" />
+  <link rel="stylesheet" href="/css/manager_neccessary.css" />
   <link rel="stylesheet" href="/css/manager.css" />
   <title>Quản lý nhu yếu phẩm</title>
 </head>
@@ -33,7 +34,7 @@
             <i class="fa-solid fa-cart-shopping fa-xl"></i> Quản lý nhu yếu phẩm</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="manager-neccessary-packet">
+          <a class="nav-link" aria-current="page" href="manager-neccessary-package">
             <i class="fa-solid fa-credit-card fa-xl"></i> Quản lý gói nhu yếu phẩm</a>
         </li>
         <li class="nav-item">
@@ -106,33 +107,35 @@
           <th scope="col" style="width: 10%;">TÁC VỤ</th>
         </thead>
         <tbody>
+          {{#each products}}
           <tr>
             <td>
-              <div class="d-flex p-2" bis_skin_checked="1">0001</div>
+              <div class="d-flex p-2" bis_skin_checked="1">{{id}}</div>
             </td>
             <td>
               <div class="d-flex align-items-center justify-content-center" bis_skin_checked="1">
                 <img width="40" height="40" class="rounded pr-2" src="https://picsum.photos/300/300">
                 <div class="p-1" bis_skin_checked="1"></div>
-                Kit test covid loại 1
+                {{productName}}
               </div>
             </td>
             <td>
-              <div class="d-flex p-2" bis_skin_checked="1">bộ</div>
+              <div class="d-flex p-2" bis_skin_checked="1">{{unit}}</div>
             </td>
             <td>
-              <div class="d-flex p-2" bis_skin_checked="1">100000</div>
+              <div class="d-flex p-2" bis_skin_checked="1">{{currentPrice}}</div>
             </td>
             <td>
-              <div class="d-flex p-2" bis_skin_checked="1">Y tế</div>
+              <div class="d-flex p-2" bis_skin_checked="1">{{category}}</div>
             </td>
             <td>
               <form>
-                <a href="info-neccessary"><button class="btn btn-outline-success" type="button">Chi tiết</button></a>
-                <a href="#"><button class="btn btn-outline-success" type="button">Xóa</button></a>
+                <a href="info-neccessary/{{id}}"><button class="btn btn-outline-success" type="button">Chi tiết</button></a>
+                <a href="manager-neccessary/delete/{{id}}" method="get"><button class="btn btn-outline-success" type="button">Xóa</button></a>
               </form>
             </td>
           </tr>
+          {{/each}}
 
         </tbody>
       </table>
