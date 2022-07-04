@@ -15,11 +15,16 @@ router
     .post(adminController.signInValidator, adminController.signIn);
 
 router.route('/admin/manager').get(adminController.isLogin, adminController.managerView);
-router.route('/admin/manager/:id').post(adminController.lockAdmin, adminController.managerView);
-router.route('/admin/add').get(adminController.addAdminView).post(adminController.addManager);
+router
+    .route('/admin/manager/:id')
+    .post(adminController.isLogin, adminController.lockAdmin, adminController.managerView);
+router
+    .route('/admin/add')
+    .get(adminController.isLogin, adminController.addAdminView)
+    .post(adminController.isLogin, adminController.addManager);
 
-router.route('/manager/manager').get(adminController.managerHomepagelView);
-router.route('/manager/addpatient').get(adminController.addPatientView);
+router.route('/manager/manager').get(adminController.isLogin, adminController.managerHomepagelView);
+router.route('/manager/addpatient').get(adminController.isLogin, adminController.addPatientView);
 router.route('/manager/payment').get(adminController.paymentManagerView);
 router.route('/manager/:id').get(adminController.inforDetailView);
 
