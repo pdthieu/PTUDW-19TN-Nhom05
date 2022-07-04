@@ -33,7 +33,6 @@ exports.signUpValidator = async (req, res, next) => {
         const body = await signUpSchema.validateAsync(req.body);
         return next();
     } catch (err) {
-        console.log(err);
         return res.render('admin/signup', { title: 'Sign up', err: err.details[0].message });
     }
 };
@@ -54,11 +53,9 @@ exports.signInView = async (req, res) => {
 
 exports.signInValidator = async (req, res, next) => {
     try {
-        console.log(req.body);
         const body = await signInSchema.validateAsync(req.body);
         return next();
     } catch (err) {
-        console.log(err);
         return res.render('admin/signin', { title: 'Sign in', err: err.details[0].message });
     }
 };
@@ -111,7 +108,6 @@ exports.isLogin = async (req, res, next) => {
         req.admin = verify;
         return next();
     } catch (err) {
-        console.log(err);
         return res.redirect('/admin/signin');
     }
 };

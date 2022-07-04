@@ -3,7 +3,6 @@ let form = document.querySelector("form");
 
 function validateForm() {
   let x = document.forms["loginForm"]["username"].value;
-  console.log(x);
   if (x === "manager@gmail.com") {
     form.setAttribute("action", "./manager.html");
     return true;

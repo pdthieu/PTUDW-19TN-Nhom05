@@ -31,7 +31,6 @@ exports.signUpValidator = async (req, res, next) => {
         const body = await signUpSchema.validateAsync(req.body);
         return next();
     } catch (err) {
-        console.log(err);
         return res.render('user/signup', { title: 'Sign up', err: err.details[0].message });
     }
 };
@@ -52,11 +51,9 @@ exports.signInView = async (req, res) => {
 
 exports.signInValidator = async (req, res, next) => {
     try {
-        console.log(req.body);
         const body = await signInSchema.validateAsync(req.body);
         return next();
     } catch (err) {
-        console.log(err);
         return res.render('user/signin', { title: 'Sign in', err: err.details[0].message });
     }
 };
@@ -82,12 +79,10 @@ exports.isLogin = async (req, res, next) => {
     const token = req.cookies.jwt;
     try {
         const verify = jwt.verify(token, process.env.JWT_CODE);
-        console.log(verify);
         if (verify.role != 'user') throw 'auth fails';
         req.user = verify;
         return next();
     } catch (err) {
-        console.log(err);
         return res.redirect('/user/signin');
     }
 };
