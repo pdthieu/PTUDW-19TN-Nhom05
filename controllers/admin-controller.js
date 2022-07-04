@@ -1,6 +1,6 @@
 const Joi = require('joi');
 const jwt = require('jsonwebtoken');
-const { Admin } = require('../models');
+const { Admin, User } = require('../models');
 const signToken = require('../utils/signToken');
 const database = require('../models');
 
@@ -49,7 +49,7 @@ exports.signUp = async (req, res) => {
 };
 
 exports.signInView = async (req, res) => {
-    return res.render('admin/signIn', { title: 'Sign in' });
+    return res.render('admin/signin', { title: 'Sign in' });
 };
 
 exports.signInValidator = async (req, res, next) => {
@@ -161,9 +161,8 @@ exports.addAdminView = async (req, res) => {
 };
 
 const controller = {};
-const Users = database.User;
 controller.getAll = function (callback) {
-    Users.findAll().then(function (users) {
+    User.findAll().then(function (users) {
         callback(users);
     });
 };

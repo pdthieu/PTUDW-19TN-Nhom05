@@ -9,6 +9,10 @@ router.get('/homepage', function (req, res, next) {
     res.render('index', { title: 'Express' });
 });
 
+router.get('/manager/manager', function (req, res, next) {
+    res.render('manager/manager', { title: 'Manager' });
+});
+
 router.get('/manager-neccesary', function (req, res, next) {
     res.render('manager_neccessary', { title: 'manager neccessary' });
 });
