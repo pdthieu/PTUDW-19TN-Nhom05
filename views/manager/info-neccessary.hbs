@@ -13,8 +13,8 @@
   <link rel="icon" type="image/x-icon" href="/assets/logo.png" />
   <link rel="stylesheet" href="/css/nav.css">
   <link rel="stylesheet" href="/css/manager.css" />
-  <link rel="stylesheet" href="/css/payment_manager.css">
-  <title>Payment Management</title>
+  <link rel="stylesheet" href="/css/addneccessary.css">
+  <title>Chi tiết nhu yếu phẩm</title>
 </head>
 
 <body>
@@ -30,7 +30,7 @@
             <i class="fa-solid fa-user fa-xl"></i> Quản lý bệnh nhân</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="manager-neccessary">
+          <a class="nav-link active" aria-current="page" href="manager-neccessary">
             <i class="fa-solid fa-cart-shopping fa-xl"></i> Quản lý nhu yếu phẩm</a>
         </li>
         <li class="nav-item">
@@ -38,13 +38,14 @@
             <i class="fa-solid fa-credit-card fa-xl"></i> Quản lý gói nhu yếu phẩm</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="payment">
+          <a class="nav-link" aria-current="page" href="payment">
             <i class="fa-solid fa-credit-card fa-xl"></i> Quản lý thanh toán</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" aria-current="page" href="#">
             <i class="fa-solid fa-cloud fa-xl"></i> Thống kê thông tin</a>
         </li>
+
       </ul>
       <div class="d-flex flex-column align-items-center" style="margin-top: auto">
         <hr />
@@ -65,63 +66,49 @@
       </div>
     </div>
     <div class="col p-5" bis_skin_checked="1">
-      <h3>Quản lý thanh toán</h3>
-      <h4 class="py-5">Hạn mức thanh toán tối thiểu (VND): <input type="text" id="money" name="money"
-          placeholder="500 000" disabled><a href="#"><i class="fa-solid fa-pencil"></i></button></a></h4>
-      <table class="table">
-        <thead>
-          <th scope="col">#</th>
-          <th scope="col">Họ và tên <a href="#"><i class="fa-solid fa-arrow-down"></i></a></th>
-          <th scope="col">CMND/CCCD <a href="#"><i class="fa-solid fa-arrow-down"></i></a></th>
-          <th scope="col">Dư nợ (VND) <a href="#"><i class="fa-solid fa-arrow-down"></i></a></th>
-          <th scope="col">Địa chỉ <a href="#"><i class="fa-solid fa-arrow-down"></i></a></th>
-          <th scope="col">Tác vụ</th>
-        </thead>
-        <tbody>
-          {{#each payment}}
-          <tr>
-            <th>
-              <div class="d-flex p-2" bis_skin_checked="1">1</div>
-            </th>
-            <td>
-              <div class="d-flex align-items-center justify-content-start" bis_skin_checked="1">
-                <img width="40" height="40" class="rounded pr-2" src="https://picsum.photos/300/300">
-                <div class="p-1" bis_skin_checked="1"></div>
-                Vũ Văn Đô
-              </div>
-            </td>
-            <td>
-              <div class="d-flex p-2" bis_skin_checked="1">{{userId}}</div>
-            </td>
-            <td>
-              <div class="d-flex p-2" bis_skin_checked="1">{{balance}}</div>
-            </td>
-            <td>
-              <div class="d-flex p-2" bis_skin_checked="1">Nguyễn Văn Cừ, Quận 5, TP.HCM</div>
-            </td>
-            <td>
-              <form>
-                <a href="#"><button class="btn btn-outline-success" type="button">Nhắc nhở</button></a>
-              </form>
-            </td>
-          </tr>
-        {{/each}}
-        </tbody>
-      </table>
-      <nav aria-label="Page navigation">
-        <ul class="pagination justify-content-end paging sticky-top">
-          <li class="page-item disabled">
-            <a class="page-link" href="#" tabindex="-1">Previous</a>
-          </li>
-          <li class="page-item"><a class="page-link active" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item">
-            <a class="page-link" href="#">Next</a>
-          </li>
-        </ul>
-      </nav>
+      <h6>Quản lý nhu yếu phẩm > Chi tiết nhu yếu phẩm</h6>
+      <div class="p-5">
+      <form>
+        <h5>Thông tin nhu yếu phẩm:</h5>
+        <div class="form-row">
+          <div class="form-group col-md-6 py-2 inline-input name">
+            <label for="inputname">Tên sản phẩm:</label>
+            <input type="text" class="form-control" id="inputname" value="Nhập tên sản phẩm">
+          </div>
+          <div class="form-group py-2 col-md-5 inline-input">
+            <label for="inputIdUser">Đơn vị định lượng</label>
+            <input type="text" class="form-control" id="inputIdUser" value="Ví dụ: cái">
+          </div>
+        </div>
+        <div class="form-row ">
+          <div class="form-group col-md-6 py-2 inline-input tel">
+            <label for="inputTel">Đơn giá/1 đơn vị (VNĐ)</label>
+            <input type="tel" class="form-control" id="inputTel" value="Ví dụ: 1000">
+          </div>
+          <div class="form-group py-2 col-md-5 inline-input">
+            <label for="inputIdUser">Danh mục</label>
+            <input type="text" class="form-control" id="inputIdUser" value="Ví dụ: y tế">
+          </div>
+        </div>
+        <div class="form-group py-2">
+          <label for="inputStatus">Thêm hình ảnh: </label>
+          <a href="#"><button type="button" class="btn btn-outline-success">Chọn tệp</button></a>
+        </div>
+        <div class="form-group">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="check">
+            <label class="form-check-label" for="check">
+              Xác nhận thông tin cập nhật.
+            </label>
+          </div>
+        </div>
+        <div class="d-flex form-row justify-content-center">
+          <a href="manager-neccessary"><button type="submit" class="btn btn-outline-success confirm">Xác nhận</button></a>
+          <a href="manager-neccessary"><button type="button" class="btn btn-outline-success cancel">Hủy</button></a>
+        </div>
+        
+      </form>
+    </div>
     </div>
   </div>
-
 </html>

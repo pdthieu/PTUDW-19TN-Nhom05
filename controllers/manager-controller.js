@@ -1,6 +1,6 @@
 const Joi = require('joi');
 const jwt = require('jsonwebtoken');
-const { Admin } = require('../models');
+const { Admin, User, TransactionHistory } = require('../models');
 const signToken = require('../utils/signToken');
 var database = require('../models');
 
@@ -133,33 +133,14 @@ exports.addPatientView = async (req, res) => {
 };
 
 exports.paymentManagerView = async (req, res) => {
-    var controllerPayment = {};
-    var Payment = database.TransactionHistory;
-    controllerPayment.getAll = function (callback) {
-        Payment
-            .findAll({
-            })
-            .then(function (payment) {
-                callback(payment);
-            })
-    }
-    controllerPayment.getAll(function (payment) {
-        console.log(payment);
-    })
+    var payment = await TransactionHistory.findAll({where{}});
+
     return res.render('manager/payment_manager', { title: 'payment manager' });
 };
 
-controller.getById = function(id, callback){
-    Users.findOne({
-        where: {id: id}
-    }).then(function(user){
-        callback(user)
-    })
-}
+
 exports.inforDetailView = async (req, res) => {
     var id = req.params.id;
-    controller.getById(id,function(user){
-        res.locals.user = user;
-        return res.render('manager/infor-detail', { title: 'patient' });
-    })
+    return res.render('manager/infor-detail', { title: 'patient' });
+
 };

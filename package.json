@@ -19,5 +19,8 @@
     "morgan": "~1.9.1",
     "pg": "^8.7.3",
     "sequelize": "^6.21.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.18"
   }
 }

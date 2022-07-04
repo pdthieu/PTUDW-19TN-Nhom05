@@ -11,9 +11,9 @@
     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
   <script src="https://kit.fontawesome.com/1d64da5d4e.js" crossorigin="anonymous"></script>
   <link rel="icon" type="image/x-icon" href="/assets/logo.png" />
-  <link rel="stylesheet" href="/css/nav.css">
+  <link rel="stylesheet" href="/css/nav.css" />
   <link rel="stylesheet" href="/css/manager.css" />
-  <title>Covid Management</title>
+  <title>Quản lý nhu yếu phẩm</title>
 </head>
 
 <body>
@@ -25,16 +25,16 @@
       </div>
       <ul class="nav flex-column">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">
+          <a class="nav-link " aria-current="page" href="manager">
             <i class="fa-solid fa-user fa-xl"></i> Quản lý bệnh nhân</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="manager-neccessary">
+          <a class="nav-link active" aria-current="page" href="manager-neccessary">
             <i class="fa-solid fa-cart-shopping fa-xl"></i> Quản lý nhu yếu phẩm</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" aria-current="page" href="manager-neccessary-packet">
-            <i class="fa-solid fa-basket-shopping fa-xl"></i> Quản lý gói nhu yếu phẩm</a>
+            <i class="fa-solid fa-credit-card fa-xl"></i> Quản lý gói nhu yếu phẩm</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" aria-current="page" href="payment">
@@ -44,7 +44,6 @@
           <a class="nav-link" aria-current="page" href="#">
             <i class="fa-solid fa-cloud fa-xl"></i> Thống kê thông tin</a>
         </li>
-
       </ul>
       <div class="d-flex flex-column align-items-center" style="margin-top: auto">
         <hr />
@@ -64,67 +63,77 @@
         <a href="signin">Đăng xuất</a>
       </div>
     </div>
-    <div class="col p-5" bis_skin_checked="1">
-      <h3>Quản lý bệnh nhân</h3>
-      <ul class="nav">
+    <div class="col" , style="padding: 2% 2%; padding-left: 1%">
+      <h3>Quản lý nhu yếu phẩm</h3>
+      <ul class="nav" style="margin-top: 10px">
         <li class="nav-item">
-          <a class="nav-link active" href="addpatient">
-            <button class="btn btn-outline-success" type="button">+ Thêm bệnh nhân</button>
+          <a class="nav-link active" href="add-neccessary">
+            <button class="btn btn-outline-success" type="button">
+              + Thêm nhu yếu phẩm
+            </button>
           </a>
         </li>
         <li class="nav-item" style="margin-left: auto">
+          <select class="form-select form-select-filter" aria-label="Default select example">
+            <option selected>Filter</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+          </select>
+        </li>
+
+        <li class="nav-item">
           <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
+            <input class="form-control me-2" type="search" placeholder="Tên gói nhu yếu phẩm" aria-label="Search" />
+            <button class="btn btn-outline-success search-button" type="submit">
+              Tìm kiếm
+            </button>
           </form>
         </li>
         <li class="nav-item">
-          <button class="btn btn-outline-success" type="button">Xóa bộ lọc</button>
+          <button class="btn btn-outline-success" type="button">
+            Xóa bộ lọc
+          </button>
         </li>
       </ul>
       <table class="table">
         <thead>
-          <th scope="col">#</th>
-          <th scope="col">Họ và tên <a href="#"><i class="fa-solid fa-arrow-down"></i></a></th>
-          <th scope="col">CMND/CCCD <a href="#"><i class="fa-solid fa-arrow-down"></i></a></th>
-          <th scope="col">Năm sinh <a href="#"><i class="fa-solid fa-arrow-down"></i></a></th>
-          <th scope="col">Địa chỉ <a href="#"><i class="fa-solid fa-arrow-down"></i></a></th>
-          <th scope="col">Tình trạng <a href="#"><i class="fa-solid fa-arrow-down"></i></a></th>
-          <th scope="col">Tác vụ</th>
+          <th scope="col" style="width: 10%;">ID</th>
+          <th scope="col" style="width: 20%;">TÊN SẢN PHẨM</th>
+          <th scope="col" style="width: 10%;">ĐƠN VỊ</th>
+          <th scope="col" style="width: 10%;">ĐƠN GIÁ/1 ĐƠN VỊ</th>
+          <th scope="col" style="width: 15%;">DANH MỤC</th>
+          <th scope="col" style="width: 10%;">TÁC VỤ</th>
         </thead>
         <tbody>
-          {{#each users}}
           <tr>
-            <th>
-              <div class="d-flex p-2" bis_skin_checked="1">{{id}}</div>
-            </th>     
             <td>
-              <div class="d-flex align-items-center justify-content-start" bis_skin_checked="1">
+              <div class="d-flex p-2" bis_skin_checked="1">0001</div>
+            </td>
+            <td>
+              <div class="d-flex align-items-center justify-content-center" bis_skin_checked="1">
                 <img width="40" height="40" class="rounded pr-2" src="https://picsum.photos/300/300">
                 <div class="p-1" bis_skin_checked="1"></div>
-                {{fullName}}
+                Kit test covid loại 1
               </div>
             </td>
             <td>
-              <div class="d-flex p-2" bis_skin_checked="1">{{identityId}}</div>
+              <div class="d-flex p-2" bis_skin_checked="1">bộ</div>
             </td>
             <td>
-              <div class="d-flex p-2" bis_skin_checked="1">{{birthday}}</div>
+              <div class="d-flex p-2" bis_skin_checked="1">100000</div>
             </td>
             <td>
-              <div class="d-flex p-2" bis_skin_checked="1">{{addressId}}</div>
-            </td>
-            <td>
-              <div class="d-flex p-2" bis_skin_checked="1">{{currentStatus}}</div>
+              <div class="d-flex p-2" bis_skin_checked="1">Y tế</div>
             </td>
             <td>
               <form>
-                <a href="/infor-detail/{{id}}"><button class="btn btn-outline-success" type="button">Chi tiết</button></a>
+                <a href="info-neccessary"><button class="btn btn-outline-success" type="button">Chi tiết</button></a>
                 <a href="#"><button class="btn btn-outline-success" type="button">Xóa</button></a>
               </form>
             </td>
           </tr>
-          {{/each}}
+
         </tbody>
       </table>
       <nav aria-label="Page navigation">
