@@ -112,15 +112,15 @@ exports.isNotLogin = async (req, res, next) => {
         return next();
     }
 };
-
+var controller = {};
+var Users = database.User;
+controller.getAll = async function (callback) {
+    await Users.findAll().then(function (users) {
+        callback(users);
+    });
+};
 exports.managerHomepagelView = async (req, res) => {
-    var controller = {};
-    var Users = database.User;
-    controller.getAll = async function (callback) {
-        await Users.findAll().then(function (users) {
-            callback(users);
-        });
-    };
+
     await controller.getAll(function (users) {
         res.locals.users = users;
         console.log(users);
@@ -133,10 +133,33 @@ exports.addPatientView = async (req, res) => {
 };
 
 exports.paymentManagerView = async (req, res) => {
-    return res.render('manager/payment_manager', { title: 'patient' });
+    var controllerPayment = {};
+    var Payment = database.TransactionHistory;
+    controllerPayment.getAll = function (callback) {
+        Payment
+            .findAll({
+            })
+            .then(function (payment) {
+                callback(payment);
+            })
+    }
+    controllerPayment.getAll(function (payment) {
+        console.log(payment);
+    })
+    return res.render('manager/payment_manager', { title: 'payment manager' });
 };
 
+controller.getById = function(id, callback){
+    Users.findOne({
+        where: {id: id}
+    }).then(function(user){
+        callback(user)
+    })
+}
 exports.inforDetailView = async (req, res) => {
     var id = req.params.id;
-    return res.render('manager/:id', { title: 'patient' });
+    controller.getById(id,function(user){
+        res.locals.user = user;
+        return res.render('manager/infor-detail', { title: 'patient' });
+    })
 };
