@@ -94,7 +94,7 @@ exports.isLogin = async (req, res, next) => {
     const token = req.cookies.jwtmanager;
     try {
         const verify = jwt.verify(token, process.env.JWT_CODE);
-        if (verify.role == 'manager') throw 'auth fails';
+        if (verify.role != 'manager') throw 'auth fails';
         req.manager = verify;
         return next();
     } catch (err) {
