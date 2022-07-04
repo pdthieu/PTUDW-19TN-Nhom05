@@ -82,10 +82,12 @@ exports.isLogin = async (req, res, next) => {
     const token = req.cookies.jwt;
     try {
         const verify = jwt.verify(token, process.env.JWT_CODE);
+        console.log(verify);
         if (verify.role != 'user') throw 'auth fails';
         req.user = verify;
         return next();
     } catch (err) {
+        console.log(err);
         return res.redirect('/user/signin');
     }
 };
@@ -99,6 +101,10 @@ exports.isNotLogin = async (req, res, next) => {
     } catch (err) {
         return next();
     }
+};
+
+exports.userProductView = async (req, res) => {
+    return res.render('user/product');
 };
 
 exports.logout = async (req, res) => {
