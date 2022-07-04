@@ -109,7 +109,6 @@ exports.isLogin = async (req, res, next) => {
         const verify = jwt.verify(token, process.env.JWT_CODE);
         if (verify.role != 'admin') throw 'auth fails';
         req.admin = verify;
-        console.log('abc');
         return next();
     } catch (err) {
         console.log(err);
@@ -185,4 +184,9 @@ exports.paymentManagerView = async (req, res) => {
 exports.inforDetailView = async (req, res) => {
     var id = req.params.id;
     return res.render('manager/:id', { title: 'patient' });
+};
+
+exports.logout = async (req, res) => {
+    res.clearCookie('jwtadmin');
+    res.redirect('/homepage');
 };

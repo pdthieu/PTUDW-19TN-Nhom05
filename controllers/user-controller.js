@@ -100,3 +100,8 @@ exports.isNotLogin = async (req, res, next) => {
         return next();
     }
 };
+
+exports.logout = async (req, res) => {
+    res.clearCookie('jwt');
+    res.redirect('/homepage');
+};

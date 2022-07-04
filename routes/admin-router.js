@@ -23,4 +23,5 @@ router
     .get(adminController.isLogin, adminController.addAdminView)
     .post(adminController.isLogin, adminController.addManager);
 
+router.route('/admin/logout').get(adminController.logout);
 module.exports = router;

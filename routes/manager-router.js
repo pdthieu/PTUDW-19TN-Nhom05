@@ -40,4 +40,5 @@ router.route('/manager/addpatient').get(managerController.isLogin, managerContro
 router.route('/manager/payment').get(managerController.isLogin, managerController.paymentManagerView);
 router.route('/manager/:id').get(managerController.isLogin, managerController.inforDetailView);
 
+router.route('/manager/logout').get(managerController.logout);
 module.exports = router;

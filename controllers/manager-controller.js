@@ -179,3 +179,8 @@ exports.managerInfoNeccessaryPacketView = async (req, res) => {
     console.log('info neccessary packet view controller');
     return res.render('manager/info-neccessary-packet', { title: 'info neccessary packet' });
 };
+
+exports.logout = async (req, res) => {
+    res.clearCookie('jwtmanager');
+    res.redirect('/homepage');
+};
