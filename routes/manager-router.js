@@ -13,7 +13,29 @@ router
     .get(managerController.isNotLogin, managerController.signInView)
     .post(managerController.signInValidator, managerController.signIn);
 
-router.route('/manager').get(managerController.managerHomepagelView);
+router
+    .route('/manager/manager-neccessary')
+    .get(managerController.isLogin, managerController.managerNeccessaryView);
+
+router
+    .route('/manager/add-neccessary')
+    .get(managerController.isLogin, managerController.managerAddNeccessaryView);
+router
+    .route('/manager/info-neccessary')
+    .get(managerController.isLogin, managerController.managerInfoNeccessaryView);
+
+router
+    .route('/manager/manager-neccessary-packet')
+    .get(managerController.isLogin, managerController.managerNeccessaryPacketView);
+
+router
+    .route('/manager/add-neccessary-packet')
+    .get(managerController.isLogin, managerController.managerAddNeccessaryPacketView);
+router
+    .route('/manager/info-neccessary-packet')
+    .get(managerController.isLogin, managerController.managerInfoNeccessaryPacketView);
+
+router.route('/manager/manager').get(managerController.managerHomepagelView);
 router.route('/manager/addpatient').get(managerController.addPatientView);
 router.route('/manager/payment').get(managerController.paymentManagerView);
 router.route('/manager/:id').get(managerController.inforDetailView);
