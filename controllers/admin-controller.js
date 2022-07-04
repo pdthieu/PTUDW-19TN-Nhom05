@@ -97,7 +97,7 @@ exports.signIn = async (req, res) => {
     const isValidPassword = await admin.isValidPassword(body.password, admin.password);
     if (isValidPassword) {
         res = signToken(res, admin.id, 'admin');
-        return res.redirect('/homepage');
+        return res.redirect('/admin/manager');
     } else {
         return res.render('admin/signin', { title: 'Sign in', err: 'Email or Password is wrong' });
     }
