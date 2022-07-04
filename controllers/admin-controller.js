@@ -107,13 +107,13 @@ exports.isLogin = async (req, res, next) => {
     const token = req.cookies.jwtadmin;
     try {
         const verify = jwt.verify(token, process.env.JWT_CODE);
+        if (verify.role != 'admin') throw 'auth fails';
         req.admin = verify;
+        console.log('abc');
         return next();
     } catch (err) {
-        res.status(400).json({
-            errMsg: 'Auth fails',
-        });
-        return res.redirect('/admin/homepage');
+        console.log(err);
+        return res.redirect('/admin/signin');
     }
 };
 

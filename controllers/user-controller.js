@@ -82,13 +82,11 @@ exports.isLogin = async (req, res, next) => {
     const token = req.cookies.jwt;
     try {
         const verify = jwt.verify(token, process.env.JWT_CODE);
+        if (verify.role != 'user') throw 'auth fails';
         req.user = verify;
         return next();
     } catch (err) {
-        res.status(400).json({
-            errMsg: 'Auth fails',
-        });
-        return res.redirect('/user/homepage');
+        return res.redirect('/user/signin');
     }
 };
 

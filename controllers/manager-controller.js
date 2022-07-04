@@ -1,6 +1,10 @@
 const Joi = require('joi');
 const jwt = require('jsonwebtoken');
+<<<<<<< HEAD
 const { Admin, User, TransactionHistory } = require('../models');
+=======
+const { Admin, User } = require('../models');
+>>>>>>> 61084e97092bd6e028d59f833afc2f2d1e594a9e
 const signToken = require('../utils/signToken');
 var database = require('../models');
 
@@ -45,10 +49,11 @@ exports.signUp = async (req, res) => {
     }
     await Admin.create(req.body);
     res.clearCookie('jwt');
-    return res.redirect('manager/signin');
+    return res.redirect('signin');
 };
 
 exports.signInView = async (req, res) => {
+    console.log('signin view controller');
     return res.render('manager/signin', { title: 'Sign in' });
 };
 
@@ -64,6 +69,7 @@ exports.signInValidator = async (req, res, next) => {
 };
 
 exports.signIn = async (req, res) => {
+    console.log('signin controller');
     const body = req.body;
     const manager = await Admin.unscoped().findOne({
         where: { email: body.email, type: 'manager' },
@@ -89,20 +95,19 @@ exports.signIn = async (req, res) => {
 };
 
 exports.isLogin = async (req, res, next) => {
-    const token = req.cookies.jwt;
+    const token = req.cookies.jwtmanager;
     try {
         const verify = jwt.verify(token, process.env.JWT_CODE);
+        if (verify.role != 'manager') throw 'auth fails';
         req.manager = verify;
         return next();
     } catch (err) {
-        res.status(400).json({
-            errMsg: 'Auth fails',
-        });
-        return res.redirect('manager');
+        return res.redirect('/manager/signin');
     }
 };
 
 exports.isNotLogin = async (req, res, next) => {
+    console.log('is not login controller');
     const token = req.cookies.jwt;
     try {
         const verify = jwt.verify(token, process.env.JWT_CODE);
@@ -120,27 +125,88 @@ controller.getAll = async function (callback) {
     });
 };
 exports.managerHomepagelView = async (req, res) => {
+<<<<<<< HEAD
 
     await controller.getAll(function (users) {
         res.locals.users = users;
         console.log(users);
         return res.render('/manager', { title: 'manager' });
     });
+=======
+    // console.log('manager homepage view controller');
+    // var controller = {};
+    // var Users = database.User;
+    // controller.getAll = async function (callback) {
+    //     await Users.findAll().then(function (users) {
+    //         callback(users);
+    //     });
+    // };
+    // await controller.getAll(function (users) {
+    //     res.locals.users = users;
+    //     console.log(users);
+    //     return res.render('manager/manager', { title: 'manager' });
+    // });
+
+    const users = await User.findAll({ where: {} });
+    return res.render('manager/manager', { title: 'manager', users });
+>>>>>>> 61084e97092bd6e028d59f833afc2f2d1e594a9e
 };
 
 exports.addPatientView = async (req, res) => {
+    console.log('add patient controller');
     return res.render('manager/addpatient', { title: 'patient' });
 };
 
 exports.paymentManagerView = async (req, res) => {
+<<<<<<< HEAD
     var payment = await TransactionHistory.findAll({where{}});
 
     return res.render('manager/payment_manager', { title: 'payment manager' });
+=======
+    console.log('payment manager view controller');
+    return res.render('manager/payment_manager', { title: 'patient' });
+>>>>>>> 61084e97092bd6e028d59f833afc2f2d1e594a9e
 };
 
 
 exports.inforDetailView = async (req, res) => {
+    console.log('infor detail view controller');
     var id = req.params.id;
+<<<<<<< HEAD
     return res.render('manager/infor-detail', { title: 'patient' });
 
+=======
+    console.log(id);
+    return res.render('manager/infor-detail', { title: 'patient' });
+};
+
+exports.managerNeccessaryView = async (req, res) => {
+    console.log('manager neccessary controller');
+    return res.render('manager/manager-neccessary', { title: 'manager neccessary' });
+};
+
+exports.managerAddNeccessaryView = async (req, res) => {
+    console.log('add neccessary view controller');
+    return res.render('manager/add-neccessary', { title: 'add neccessary' });
+};
+
+exports.managerInfoNeccessaryView = async (req, res) => {
+    console.log('info neccessary view controller');
+    return res.render('manager/info-neccessary', { title: 'info neccessary' });
+};
+
+exports.managerNeccessaryPacketView = async (req, res) => {
+    console.log('manager neccessary packet controller');
+    return res.render('manager/manager-neccessary-packet', { title: 'manager neccessary packet' });
+};
+
+exports.managerAddNeccessaryPacketView = async (req, res) => {
+    console.log('add neccessary packet view controller');
+    return res.render('manager/add-neccessary-packet', { title: 'add neccessary packet' });
+};
+
+exports.managerInfoNeccessaryPacketView = async (req, res) => {
+    console.log('info neccessary packet view controller');
+    return res.render('manager/info-neccessary-packet', { title: 'info neccessary packet' });
+>>>>>>> 61084e97092bd6e028d59f833afc2f2d1e594a9e
 };

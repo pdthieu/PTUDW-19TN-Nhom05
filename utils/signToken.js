@@ -10,6 +10,8 @@ const signToken = (res, id, role) => {
     };
     if (role == 'admin') {
         res.cookie('jwtadmin', token, cookieOption);
+    } else if (role == 'manager') {
+        res.cookie('jwtmanager', token, cookieOption);
     } else res.cookie('jwt', token, cookieOption);
     return res;
 };
