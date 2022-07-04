@@ -35,9 +35,9 @@ router
     .route('/manager/info-neccessary-packet')
     .get(managerController.isLogin, managerController.managerInfoNeccessaryPacketView);
 
-router.route('/manager/manager').get(managerController.managerHomepagelView);
-router.route('/manager/addpatient').get(managerController.addPatientView);
-router.route('/manager/payment').get(managerController.paymentManagerView);
-router.route('/manager/:id').get(managerController.inforDetailView);
+router.route('/manager/manager').get(managerController.isLogin, managerController.managerHomepagelView);
+router.route('/manager/addpatient').get(managerController.isLogin, managerController.addPatientView);
+router.route('/manager/payment').get(managerController.isLogin, managerController.paymentManagerView);
+router.route('/manager/:id').get(managerController.isLogin, managerController.inforDetailView);
 
 module.exports = router;

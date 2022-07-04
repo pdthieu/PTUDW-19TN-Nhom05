@@ -1,6 +1,6 @@
 const Joi = require('joi');
 const jwt = require('jsonwebtoken');
-const { Admin } = require('../models');
+const { Admin, User } = require('../models');
 const signToken = require('../utils/signToken');
 var database = require('../models');
 
@@ -91,17 +91,14 @@ exports.signIn = async (req, res) => {
 };
 
 exports.isLogin = async (req, res, next) => {
-    console.log('is login controller');
-    const token = req.cookies.jwt;
+    const token = req.cookies.jwtmanager;
     try {
         const verify = jwt.verify(token, process.env.JWT_CODE);
+        if (verify.role == 'manager') throw 'auth fails';
         req.manager = verify;
         return next();
     } catch (err) {
-        res.status(400).json({
-            errMsg: 'Auth fails',
-        });
-        return res.redirect('signin');
+        return res.redirect('/manager/signin');
     }
 };
 
@@ -118,19 +115,22 @@ exports.isNotLogin = async (req, res, next) => {
 };
 
 exports.managerHomepagelView = async (req, res) => {
-    console.log('manager homepage view controller');
-    var controller = {};
-    var Users = database.User;
-    controller.getAll = async function (callback) {
-        await Users.findAll().then(function (users) {
-            callback(users);
-        });
-    };
-    await controller.getAll(function (users) {
-        res.locals.users = users;
-        console.log(users);
-        return res.render('manager/manager', { title: 'manager' });
-    });
+    // console.log('manager homepage view controller');
+    // var controller = {};
+    // var Users = database.User;
+    // controller.getAll = async function (callback) {
+    //     await Users.findAll().then(function (users) {
+    //         callback(users);
+    //     });
+    // };
+    // await controller.getAll(function (users) {
+    //     res.locals.users = users;
+    //     console.log(users);
+    //     return res.render('manager/manager', { title: 'manager' });
+    // });
+
+    const users = await User.findAll({ where: {} });
+    return res.render('manager/manager', { title: 'manager', users });
 };
 
 exports.addPatientView = async (req, res) => {
