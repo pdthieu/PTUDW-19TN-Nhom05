@@ -34,7 +34,7 @@
             <i class="fa-solid fa-cart-shopping fa-xl"></i> Quản lý nhu yếu phẩm</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="/manager/manager-neccessary-packet">
+          <a class="nav-link" aria-current="page" href="/manager/manager-neccessary-package">
             <i class="fa-solid fa-credit-card fa-xl"></i> Quản lý gói nhu yếu phẩm</a>
         </li>
         <li class="nav-item">
@@ -68,35 +68,35 @@
     <div class="col p-5" bis_skin_checked="1">
       <h6>Quản lý nhu yếu phẩm > Thêm nhu yếu phẩm</h6>
       <div class="p-5">
-      <form>
+      <form action="/manager/add-neccessary" method="post">
         <h5>Thông tin nhu yếu phẩm:</h5>
         <div class="form-row">
           <div class="form-group col-md-6 py-2 inline-input name">
             <label for="inputname">Tên sản phẩm:</label>
-            <input type="text" class="form-control" id="inputname" placeholder="Nhập tên sản phẩm">
+            <input type="text" class="form-control" id="inputname" name="productName" placeholder="Nhập tên sản phẩm">
           </div>
           <div class="form-group py-2 col-md-5 inline-input">
             <label for="inputIdUser">Đơn vị định lượng</label>
-            <input type="text" class="form-control" id="inputIdUser" placeholder="Ví dụ: cái">
+            <input type="text" class="form-control" id="inputIdUser" name="unit" placeholder="Ví dụ: cái">
           </div>
         </div>
         <div class="form-row ">
           <div class="form-group col-md-6 py-2 inline-input tel">
             <label for="inputTel">Đơn giá/1 đơn vị (VNĐ)</label>
-            <input type="tel" class="form-control" id="inputTel" placeholder="Ví dụ: 1000">
+            <input type="tel" class="form-control" id="inputTel" name="currentPrice" placeholder="Ví dụ: 1000">
           </div>
           <div class="form-group py-2 col-md-5 inline-input">
             <label for="inputIdUser">Danh mục</label>
-            <input type="text" class="form-control" id="inputIdUser" placeholder="Ví dụ: y tế">
+            <input type="text" class="form-control" id="inputIdUser" placeholder="Ví dụ: y tế" name="category">
           </div>
         </div>
         <div class="form-group py-2">
           <label for="inputStatus">Thêm hình ảnh: </label>
-          <a href="#"><button type="button" class="btn btn-outline-success">Chọn tệp</button></a>
+          <a href="#"><button type="button" class="btn btn-outline-success" name="images">Chọn tệp</button></a>
         </div>
         <div class="form-group">
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="check">
+            <input class="form-check-input" type="checkbox" id="check" name="check" required>
             <label class="form-check-label" for="check">
               Xác nhận thông tin đã điền.
             </label>
