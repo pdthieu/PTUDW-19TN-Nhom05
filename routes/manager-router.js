@@ -3,6 +3,8 @@ var router = express.Router();
 
 const managerController = require('../controllers/manager-controller');
 
+router.route('/manager/logout').get(managerController.logout);
+
 router
     .route('/manager/signup')
     .get(managerController.signUpView)
@@ -18,7 +20,6 @@ router
     .get(managerController.isLogin, managerController.managerNeccessaryView);
 
 router.route('/manager/manager-neccessary/delete/:id').get(managerController.deleteNeccessary);
-
 
 router
     .route('/manager/add-neccessary')
@@ -44,21 +45,26 @@ router
 
 router
     .route('/manager/manager')
-    .get(managerController.isLogin,managerController.managerHomepagelView)
-    .post(managerController.isLogin,managerController.search)
+    .get(managerController.isLogin, managerController.managerHomepagelView)
+    .post(managerController.isLogin, managerController.search);
 
-router.route('/manager/addpatient')
+router
+    .route('/manager/addpatient')
     .get(managerController.isLogin, managerController.addPatientView)
-    .post(managerController.isLogin, managerController.addNewPatient)
+    .post(managerController.isLogin, managerController.addNewPatient);
 
-router.route('/manager/payment')
+router
+    .route('/manager/payment')
     .get(managerController.isLogin, managerController.paymentManagerView);
 
-router.route('/manager/:id')
-    .get(managerController.isLogin, managerController.inforDetailView);
+router.route('/manager/:id').get(managerController.isLogin, managerController.inforDetailView);
 
-router.route('/manager/delete/:id')
-    .get(managerController.isLogin, managerController.deleteUser, managerController.managerHomepagelView);
+router
+    .route('/manager/delete/:id')
+    .get(
+        managerController.isLogin,
+        managerController.deleteUser,
+        managerController.managerHomepagelView
+    );
 
-router.route('/manager/logout').get(managerController.logout);
 module.exports = router;

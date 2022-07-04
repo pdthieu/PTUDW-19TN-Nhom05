@@ -15,7 +15,7 @@ module.exports = (sequelize, Datatype) => {
                 type: Datatype.JSON,
             },
             currentPrice: {
-                type: Datatype.DECIMAL(10, 2),
+                type: Datatype.DECIMAL(16, 2),
                 default: 0,
             },
             unit: {

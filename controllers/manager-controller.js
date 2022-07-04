@@ -129,23 +129,22 @@ const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 exports.search = async (req, res) => {
     try {
-        console.log('search result')
+        console.log('search result');
         const query = req.body.q;
         //const users = await User.findAll({ where: { fullName: query  } })
-        const users = await User.findAll({ where: { fullName: {  [Op.like]: `%${query}%` } } })
+        const users = await User.findAll({ where: { fullName: { [Op.like]: `%${query}%` } } });
         return res.render('manager/manager', { title: 'Search result', users });
     } catch (error) {
         console.log(error);
         return res.redirect('/manager/manager', { title: 'manager' });
     }
-
-}
+};
 
 exports.deleteUser = async (req, res) => {
     const id = req.params.id;
     await database.User.destroy({ where: { id } });
-    return res.redirect('/manager/manager')
-}
+    return res.redirect('/manager/manager');
+};
 
 exports.addPatientView = async (req, res) => {
     console.log('add patient controller');
@@ -155,7 +154,7 @@ exports.addPatientView = async (req, res) => {
 exports.addNewPatient = async (req, res) => {
     console.log('add new patient');
     try {
-        console.log(req.body)
+        console.log(req.body);
         await User.create({
             identityId: req.body.identityId,
             fullName: req.body.fullName,
@@ -163,18 +162,14 @@ exports.addNewPatient = async (req, res) => {
             currentStatus: req.body.currentStatus,
             email: req.body.email,
             password: req.body.identityId,
-
         });
-        console.log('success')
+        console.log('success');
         return res.redirect('/manager/manager');
     } catch (error) {
-        console.log(error)
+        console.log(error);
         return res.render('manager/addpatient', { title: 'Add patient' });
     }
 };
-
-
-
 
 exports.paymentManagerView = async (req, res) => {
     //const payment = await TransactionHistory.findAll({ where: {} });
@@ -182,12 +177,11 @@ exports.paymentManagerView = async (req, res) => {
     return res.render('manager/payment_manager', { title: 'payment' });
 };
 
-
 exports.inforDetailView = async (req, res) => {
     console.log('infor detail view controller');
     var id = req.params.id;
     console.log(id);
-    var user = await User.findOne({ where: { id: id } })
+    var user = await User.findOne({ where: { id: id } });
     return res.render('manager/infor-detail', { title: 'patient', user });
 };
 
